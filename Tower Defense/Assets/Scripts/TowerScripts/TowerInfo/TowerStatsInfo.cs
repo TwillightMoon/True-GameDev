@@ -20,8 +20,6 @@ namespace TowerStats
 
     abstract public class TowerStatsInfo : ScriptableObject
     {
-        
-
         [Header("Основные свойства")]
         [SerializeField][Tooltip("Уровень башни")] protected Levels m_towerLevel;
         [SerializeField][Tooltip("Стоимость")] protected ushort m_levelCost;

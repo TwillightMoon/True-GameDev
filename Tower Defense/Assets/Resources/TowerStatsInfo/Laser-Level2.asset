@@ -17,4 +17,4 @@ MonoBehaviour:
   m_towerSprite: {fileID: 0}
   m_damage: 56
   m_fireRatePerSecond: 3
-  m_combatRadius: 2
+  m_combatRadius: 1.5

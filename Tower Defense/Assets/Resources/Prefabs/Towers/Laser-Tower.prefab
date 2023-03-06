@@ -31,9 +31,10 @@ Transform:
   m_LocalPosition: {x: -1.25, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2101168192047549525}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3478228131289787068
 SpriteRenderer:
@@ -165,3 +166,63 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f807cd19cc94dfa42a14b1ad20af6304, type: 2}
   - {fileID: 11400000, guid: 3158de386aa1fa241acbb4c9c633052a, type: 2}
   - {fileID: 11400000, guid: c0d037f55b57f504b990df0c5dc0dcad, type: 2}
+  towerStates:
+  - {fileID: 4584122805324697350}
+  - {fileID: 6388376919758940821}
+--- !u!1 &8540760617047401394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2101168192047549525}
+  - component: {fileID: 4584122805324697350}
+  - component: {fileID: 6388376919758940821}
+  m_Layer: 0
+  m_Name: TowerStates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2101168192047549525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540760617047401394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3478228131289787067}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4584122805324697350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540760617047401394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff40fb2791542314abd0cbda9c2b8426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6388376919758940821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540760617047401394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b96043ac75ffd46a60a49a5dc02a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

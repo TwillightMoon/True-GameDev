@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 47716221}
   - component: {fileID: 47716220}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Map-Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ Transform:
   m_Children:
   - {fileID: 64433068}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &64433067
 GameObject:
@@ -20725,7 +20725,7 @@ Transform:
   m_Children:
   - {fileID: 761684963}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1632302349
 GameObject:
@@ -20769,7 +20769,7 @@ Transform:
   - {fileID: 1765446811}
   - {fileID: 804008983}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765446810
 GameObject:
@@ -21209,11 +21209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3478228131289787067, guid: ae06cae26cd0a5c409c8a5f1b022c16c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 3478228131289787067, guid: ae06cae26cd0a5c409c8a5f1b022c16c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3478228131289787067, guid: ae06cae26cd0a5c409c8a5f1b022c16c, type: 3}
       propertyPath: m_LocalPosition.z
