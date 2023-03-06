@@ -16,17 +16,6 @@ public class Tower : MonoBehaviour
 
     private Levels currentLevelIndex = Levels.First;
 
-    private void OnValidate()
-    {
-        _rigidbody2D.bodyType = RigidbodyType2D.Static;
-
-        TowerStatsInfo currentLevel = towerLevels[Convert.ToByte(currentLevelIndex)];
-        if (currentLevel)
-        {
-            _combarRadius.radius = towerLevels[Convert.ToByte(currentLevelIndex)].combatRadius;
-        }
-    }
-
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
