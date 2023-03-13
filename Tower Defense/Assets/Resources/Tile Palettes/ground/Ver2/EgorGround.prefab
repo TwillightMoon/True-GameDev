@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5896638734534362409}
   - component: {fileID: 1086880829041970114}
   m_Layer: 0
-  m_Name: New Palette
+  m_Name: EgorGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
