@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class TowerState : State
 {
-    protected Tower parentTower;
+    protected CombatTower parentTower;
 
-    public void Init(Tower parentTower)
+    public void Init(CombatTower parentTower)
     {
         if (!this.parentTower)
             this.parentTower = parentTower;
