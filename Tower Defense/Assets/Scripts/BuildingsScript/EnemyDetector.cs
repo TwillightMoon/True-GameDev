@@ -19,7 +19,6 @@ public class EnemyDetector : MonoBehaviour
         }
     }
 
-
     public void Init(Buildings parent)
     {
         _enemyList = new LinkedList<Enemy>();
@@ -27,6 +26,7 @@ public class EnemyDetector : MonoBehaviour
         _circleCollider2d.isTrigger = true;
         SetParent(parent);
     }
+
     public Enemy GetNextEnemy() 
     {
         Enemy result = null;
@@ -65,5 +65,14 @@ public class EnemyDetector : MonoBehaviour
         Debug.Log("out");
         if (enemy)
             _ = _enemyList.Remove(enemy);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(Application.isPlaying)
+        {
+            Gizmos.color = Color.green; // устанавливаем цвет
+            Gizmos.DrawWireSphere(transform.position, _circleCollider2d.radius); // рисуем окружность
+        }
     }
 }
