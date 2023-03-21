@@ -2,8 +2,6 @@ using UnityEngine;
 
 public abstract class State : MonoBehaviour, IStateChange
 {
-    protected bool _isActive = false;
-
     public abstract void StateStart();
     public abstract void StateStop();
 

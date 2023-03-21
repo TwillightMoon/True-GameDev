@@ -519,7 +519,7 @@ PlayerSettings:
   m_BuildTargetNormalMapEncoding: []
   m_BuildTargetDefaultTextureCompressionFormat:
   - m_BuildTarget: Android
-    m_Format: 3
+    m_Format: 2
   - m_BuildTarget: WebGL
     m_Format: 3
   playModeTestRunnerEnabled: 0
@@ -800,8 +800,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Tower Defense
-  metroPackageVersion: 
+  metroPackageName: TowerDefense
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -809,7 +809,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Tower Defense
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Tower Defense
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
