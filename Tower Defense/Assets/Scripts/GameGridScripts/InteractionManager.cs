@@ -22,7 +22,7 @@ public class InteractionManager : MonoBehaviour
         {
             if(_selectedBlock)
             {
-                _selectedBlock.OnUnSelected();
+                _selectedBlock.OnDeselected();
             }
 
             RaycastHit2D hit = Physics2D.Raycast(_mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _listOfInteractivity);

@@ -16,6 +16,7 @@ public abstract class Buildings : MonoBehaviour, IStateChange
     protected BuildingsConfig _buildingCharacteristic;
 
     [Header("Характеристика постройки на каждом уровне")]
+    private int _currentLevelIndex = 0;
     [SerializeField] protected BuildingsConfig[] _towerLevels;
 
     [Header("Состояния постройки")]
@@ -33,7 +34,7 @@ public abstract class Buildings : MonoBehaviour, IStateChange
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
 
         SortLevels();
-        ChangeLevel(Levels.First);
+        SetLevel(Levels.First);
     }
 
 
@@ -42,14 +43,26 @@ public abstract class Buildings : MonoBehaviour, IStateChange
         ChangeState<TowerCombat>();
     }
 
-    protected void ChangeLevel(Levels newLevel)
+    public void SetLevel(Levels newLevel)
     {
-        int currentLevelIndex = Mathf.Clamp((int)newLevel, 0, _towerLevels.Length - 1);
+        _currentLevelIndex = Mathf.Clamp((int)newLevel, 0, _towerLevels.Length - 1);
 
-        if (_towerLevels[currentLevelIndex] && _towerLevels[currentLevelIndex].towerLevel == newLevel)
+        if (_towerLevels[_currentLevelIndex] && _towerLevels[_currentLevelIndex].towerLevel == newLevel)
         {
-            _buildingCharacteristic = _towerLevels[currentLevelIndex];
+            _buildingCharacteristic = _towerLevels[_currentLevelIndex];
             Debug.Log(string.Format("Set new Level: {0}", newLevel));
+            SetNewCharacteristics();
+        }
+    }
+    public void SetLevel()
+    {
+        int newLevel = Mathf.Clamp(_currentLevelIndex++, 0, _towerLevels.Length - 1);
+
+        if ((newLevel > _currentLevelIndex) && _towerLevels[_currentLevelIndex] )
+        {
+            _currentLevelIndex = newLevel;
+            _buildingCharacteristic = _towerLevels[_currentLevelIndex];
+            Debug.Log(string.Format("Set new Level: {0}", _towerLevels[_currentLevelIndex]));
             SetNewCharacteristics();
         }
     }
