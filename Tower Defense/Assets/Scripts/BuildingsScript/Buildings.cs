@@ -56,7 +56,7 @@ public abstract class Buildings : MonoBehaviour, IStateChange
     }
     public void SetLevel()
     {
-        int newLevel = Mathf.Clamp(_currentLevelIndex++, 0, _towerLevels.Length - 1);
+        int newLevel = Mathf.Clamp(_currentLevelIndex+1, 0, _towerLevels.Length - 1);
 
         if ((newLevel > _currentLevelIndex) && _towerLevels[_currentLevelIndex] )
         {

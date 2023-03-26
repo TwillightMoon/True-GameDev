@@ -7,10 +7,17 @@ public class InteractionManager : MonoBehaviour
 
     private Camera _mainCam;
     private DefensivePosition _selectedBlock;
+
+
+    private bool _isButtonClick = false;
     private int _rayDistance = 10;
 
+    private void Awake()
+    {
+        UIEvents.onButtonClick.AddListener(IsButtonClick);
+    }
 
-    void Start()
+    private void Start()
     {
         _mainCam = Camera.main;
     }
@@ -18,23 +25,32 @@ public class InteractionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            if(_selectedBlock)
-            {
-                _selectedBlock.OnDeselected();
-            }
-
-            RaycastHit2D hit = Physics2D.Raycast(_mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _listOfInteractivity);
-            Debug.Log(hit.collider);
-            if (hit.collider)
-            {
-                _selectedBlock = hit.collider.gameObject.GetComponent<DefensivePosition>();
-                if (_selectedBlock)
-                {
-                    _selectedBlock.OnSelected();
-                }
-            }
+            if (_isButtonClick)
+                _isButtonClick = false;
+            else
+                SelectBlock();
         }
+    }
+
+
+    private void SelectBlock()
+    {
+        if (_selectedBlock)
+            _selectedBlock.OnDeselected();
+
+        RaycastHit2D hit = Physics2D.Raycast(_mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _listOfInteractivity);
+        if (hit.collider)
+        {
+            _selectedBlock = hit.collider.gameObject.GetComponent<DefensivePosition>();
+            if (_selectedBlock)
+                _selectedBlock.OnSelected();
+        }
+    }
+
+    private void IsButtonClick()
+    {
+        _isButtonClick = true;
     }
 }
