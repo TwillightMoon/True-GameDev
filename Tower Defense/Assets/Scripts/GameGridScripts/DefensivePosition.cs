@@ -17,16 +17,21 @@ public class DefensivePosition : MonoBehaviour
 
         Quaternion rotation = Quaternion.Euler(Orientation.GetVectorRotation(_blockOrientation));
         building = Instantiate(buildingPrefab, transform.position, rotation, parent);
+
+        OnDeselected();
     }
 
     public void OnSelected()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
-        UIEvents.SendSelectedBlock(this);
-
+        if (!building)
+            UIEvents.SendSelectedEmptyBlock(this);
+        else
+            UIEvents.SendSelectedOccupiedBlock(this);
     }
-    public void OnUnSelected()
+    public void OnDeselected()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
+        UIEvents.SendDeselectBlock();
     }
 }
