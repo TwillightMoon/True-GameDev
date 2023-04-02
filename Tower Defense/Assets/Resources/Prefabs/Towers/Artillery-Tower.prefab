@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3478228131289787071}
   - component: {fileID: 3478228131289787069}
   m_Layer: 3
-  m_Name: Tesla-Tower
+  m_Name: Artillery-Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,8 +157,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 91f0b8f7e6ef124478ad934c019a077d, type: 3}
-  m_Color: {r: 0.50311375, g: 0.3973834, b: 0.8867924, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e592c2386b3594a4a8bf6b82a9dcec74, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -209,9 +209,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyDetector: {fileID: 4898733714896564602}
   _towerLevels:
-  - {fileID: 11400000, guid: c0d037f55b57f504b990df0c5dc0dcad, type: 2}
-  - {fileID: 11400000, guid: f807cd19cc94dfa42a14b1ad20af6304, type: 2}
-  - {fileID: 11400000, guid: 3158de386aa1fa241acbb4c9c633052a, type: 2}
+  - {fileID: 11400000, guid: 95da1b26fed852b40a734e1578c22d37, type: 2}
+  - {fileID: 11400000, guid: 4bac42c1aebfc16419923a4dd31ff0a4, type: 2}
+  - {fileID: 11400000, guid: 4122c21020521784d93303323e3c59a0, type: 2}
   towerStates:
   - {fileID: 4584122805324697350}
   - {fileID: 6388376919758940821}

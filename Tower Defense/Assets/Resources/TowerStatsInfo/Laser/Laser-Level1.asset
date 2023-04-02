@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ce48ea9f2d7c7c47a31a12b26470490, type: 3}
-  m_Name: Laser-Lavel3
+  m_Name: Laser-Level1
   m_EditorClassIdentifier: 
-  m_towerLevel: 2
-  m_levelCost: 700
-  m_towerSprite: {fileID: 21300000, guid: 91f0b8f7e6ef124478ad934c019a077d, type: 3}
-  m_damage: 75
-  m_fireRatePerSecond: 4
-  m_combatRadius: 2.2
+  m_towerLevel: 0
+  m_levelCost: 300
+  m_towerSprite: {fileID: 21300000, guid: f79c54bfbfc369a40b200065ec633609, type: 3}
+  m_damage: 45
+  m_fireRatePerSecond: 2
+  m_combatRadius: 1
