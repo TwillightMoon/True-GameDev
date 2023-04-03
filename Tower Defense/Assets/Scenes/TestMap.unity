@@ -10073,6 +10073,10 @@ PrefabInstance:
       propertyPath: parentForTower
       value: 
       objectReference: {fileID: 533837318}
+    - target: {fileID: 2836775558471125694, guid: dfc487ad38afc0b408e66a5d0fcfbeb4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 930181076}
     - target: {fileID: 2836775558471125695, guid: dfc487ad38afc0b408e66a5d0fcfbeb4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
