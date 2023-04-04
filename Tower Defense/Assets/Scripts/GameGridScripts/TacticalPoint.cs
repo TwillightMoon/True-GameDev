@@ -3,52 +3,50 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class TacticalPoint : MonoBehaviour
 {
+    [Header("Визуальные свойства")]
+    [Tooltip("Цвета блока при выделении")]
     [SerializeField] private Color _selectedColor;
-    [SerializeField] private bool _isSelected;
 
-    [SerializeField] private OrientationEnum _blockOrientation = OrientationEnum.Up;
-    private Buildings building;
-
+    // Компоненты
     private SpriteRenderer[] _childsSpriteRenderers;
     private BoxCollider2D _boxCollider2D;
 
-    public Buildings GetBuilding() => building;
-    public bool isOccupied => building != null;
+    // Поля класса
+    private Buildings _building;
+
+    // Геттеры и Сеттеры
+    public Buildings GetBuilding() => _building;
+    public bool isOccupied => _building != null;
 
     public void SetBuilding(Buildings buildingPrefab, Transform parent)
     {
-        if (building != null)
-        {
-            Destroy(building.gameObject);
-        }
+        if (_building != null)
+            Destroy(_building.gameObject);
 
-        Quaternion rotation = Quaternion.Euler(Orientation.GetVectorRotation(_blockOrientation));
-        building = Instantiate(buildingPrefab, (Vector2)transform.position + _boxCollider2D.offset, rotation, parent);
+        _building = Instantiate(buildingPrefab, (Vector2)transform.position + _boxCollider2D.offset, Quaternion.identity, parent);
 
         OnDeselected();
     }
     public void DescructBuilding()
     {
-        if (building)
-            Destroy(building.gameObject);
+        if (_building)
+            Destroy(_building.gameObject);
     }
 
     public void OnSelected()
     {
-        if (!building)
+        if (!_building)
             UIEvents.SendSelectedEmptyBlock(this);
         else
             UIEvents.SendSelectedOccupiedBlock(this);
 
-        _isSelected = true;
-        ChangeColor();
+        ChangeColor(_selectedColor);
     }
     public void OnDeselected()
     {
         UIEvents.SendDeselectBlock();
 
-        _isSelected = false;
-        ChangeColor();
+        ChangeColor(Color.white);
     }
 
 
@@ -58,12 +56,9 @@ public class TacticalPoint : MonoBehaviour
         _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
-    private void ChangeColor()
+    private void ChangeColor(Color newColor)
     {
-        Color currentColor = _isSelected ? _selectedColor : Color.white;
         foreach (SpriteRenderer childSpriteRenderer in _childsSpriteRenderers)
-        {
-            childSpriteRenderer.color = currentColor;
-        }
+            childSpriteRenderer.color = newColor;
     }
 }
