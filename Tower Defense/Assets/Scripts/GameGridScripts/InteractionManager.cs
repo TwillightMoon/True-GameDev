@@ -6,7 +6,7 @@ public class InteractionManager : MonoBehaviour
 
 
     private Camera _mainCam;
-    private DefensivePosition _selectedBlock;
+    private TacticalPoint _selectedBlock;
 
 
     private bool _isButtonClick = false;
@@ -43,7 +43,7 @@ public class InteractionManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(_mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _listOfInteractivity);
         if (hit.collider)
         {
-            _selectedBlock = hit.collider.gameObject.GetComponent<DefensivePosition>();
+            _selectedBlock = hit.collider.gameObject.GetComponent<TacticalPoint>();
             if (_selectedBlock)
                 _selectedBlock.OnSelected();
         }

@@ -7,7 +7,7 @@ public class TowerSelectionPanel : MonoBehaviour
 
     [SerializeField] private Transform parentForTower;
 
-    private DefensivePosition _currentPosition;
+    private TacticalPoint _currentPosition;
 
 
     private void Awake()
@@ -17,7 +17,7 @@ public class TowerSelectionPanel : MonoBehaviour
         _panel.SetActive(false);
     }
 
-    private void SetActive(DefensivePosition pos)
+    private void SetActive(TacticalPoint pos)
     {
         _currentPosition = pos;
         transform.position = (Vector2)pos.transform.position + _offset;

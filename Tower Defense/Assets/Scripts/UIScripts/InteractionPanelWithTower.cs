@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class TowerUpgradePanel : MonoBehaviour
+public class InteractionPanelWithTower : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
     [SerializeField] private Vector2 _offset;
 
-    private DefensivePosition _currentPosition;
+    private TacticalPoint _currentTacticalPoint;
 
     private void Awake()
     {
@@ -15,9 +15,9 @@ public class TowerUpgradePanel : MonoBehaviour
         _panel.SetActive(false);
     }
 
-    private void SetActive(DefensivePosition pos)
+    private void SetActive(TacticalPoint pos)
     {
-        _currentPosition = pos;
+        _currentTacticalPoint = pos;
         transform.position = (Vector2)pos.transform.position + _offset;
 
         _panel.SetActive(true);
@@ -27,12 +27,16 @@ public class TowerUpgradePanel : MonoBehaviour
         if (_panel.activeSelf)
         {
             _panel.SetActive(false);
-            _currentPosition = null;
+            _currentTacticalPoint = null;
         }
     }
 
     public void UpgradeTower()
     {
-        _currentPosition.GetBuilding().SetLevel();
+        _currentTacticalPoint.GetBuilding().SetLevel();
+    }
+    public void DestructBuilding()
+    {
+        _currentTacticalPoint.DescructBuilding();
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class DefensivePosition : MonoBehaviour
+public class TacticalPoint : MonoBehaviour
 {
     [SerializeField] private Color _selectedColor;
     [SerializeField] private bool _isSelected;
@@ -26,6 +26,11 @@ public class DefensivePosition : MonoBehaviour
         building = Instantiate(buildingPrefab, (Vector2)transform.position + _boxCollider2D.offset, rotation, parent);
 
         OnDeselected();
+    }
+    public void DescructBuilding()
+    {
+        if (building)
+            Destroy(building.gameObject);
     }
 
     public void OnSelected()
