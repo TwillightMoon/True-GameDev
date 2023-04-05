@@ -1,5 +1,5 @@
 using UnityEngine;
-using TowerStats;
+using DamageTypes;
 
 [CreateAssetMenu(fileName = "EnergyTower", order = 1, menuName = "Gameplay/Towers/New EnergyTower")]
 public class EnergyTower : BuildingsConfig

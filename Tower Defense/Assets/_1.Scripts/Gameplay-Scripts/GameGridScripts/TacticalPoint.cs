@@ -1,4 +1,5 @@
 using UnityEngine;
+using GlobalUIEvents;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class TacticalPoint : MonoBehaviour

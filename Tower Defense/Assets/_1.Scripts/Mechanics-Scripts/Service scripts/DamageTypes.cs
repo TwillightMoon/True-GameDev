@@ -1,29 +1,34 @@
 using UnityEngine;
 
-public enum DamageType : byte
+namespace DamageTypes
 {
-    Physical,
-    Energy,
-    Area,
-    AMY
-}
-
-public class DamageTypes
-{
-    public static void GetAttackType(DamageType damageType)
+    public enum DamageType : byte
     {
-        switch (damageType) 
+        Physical,
+        Energy,
+        Area,
+        AMY
+    }
+
+    public class DamageTypes
+    {
+        public static void GetAttackType(DamageType damageType)
         {
-            case DamageType.Physical:
-                return;
-            case DamageType.Energy:
-                return;
-            case DamageType.Area:
-                return;
-            case DamageType.AMY:
-                return;
-            default:
-                return;
+            switch (damageType)
+            {
+                case DamageType.Physical:
+                    return;
+                case DamageType.Energy:
+                    return;
+                case DamageType.Area:
+                    return;
+                case DamageType.AMY:
+                    return;
+                default:
+                    return;
+            }
         }
     }
 }
+
+

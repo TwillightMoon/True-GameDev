@@ -1,5 +1,5 @@
 using UnityEngine;
-using TowerStats;
+using DamageTypes;
 
 [CreateAssetMenu(fileName = "PhysicalTower", order = 0, menuName = "Gameplay/Towers/New PhysicalTower")]
 public class PhysicalTower : BuildingsConfig

@@ -1,16 +1,7 @@
-using TowerStats;
+using StatsEnums;
+using DamageTypes;
 using UnityEngine;
 
-namespace TowerStats
-{
-    public enum Levels:byte
-    {
-        First,
-        Second,
-        Third,
-        Special
-    }
-}
 
 abstract public class BuildingsConfig : ScriptableObject
 {

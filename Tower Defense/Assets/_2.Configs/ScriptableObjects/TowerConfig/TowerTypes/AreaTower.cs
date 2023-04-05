@@ -1,5 +1,5 @@
 using UnityEngine;
-using TowerStats;
+using DamageTypes;
 
 [CreateAssetMenu(fileName = "AreaTower", order = 2, menuName = "Gameplay/Towers/New AreaTower")]
 public class AreaTower : BuildingsConfig

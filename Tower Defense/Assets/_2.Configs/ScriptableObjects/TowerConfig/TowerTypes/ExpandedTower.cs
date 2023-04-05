@@ -1,5 +1,5 @@
 using UnityEngine;
-using TowerStats;
+using DamageTypes;
 
 [CreateAssetMenu(fileName = "ExpandedTower", order = 3, menuName = "Gameplay/Towers/New ExpandedTower")]
 public class ExpandedTower : BuildingsConfig
