@@ -10,13 +10,6 @@ namespace TowerStats
         Third,
         Special
     }
-    public enum DamageType:byte
-    {
-        Physical,
-        Energy,
-        Area,
-        AMY
-    }
 }
 
 abstract public class BuildingsConfig : ScriptableObject
