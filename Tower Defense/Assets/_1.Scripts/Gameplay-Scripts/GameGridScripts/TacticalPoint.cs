@@ -14,17 +14,16 @@ public class TacticalPoint : MonoBehaviour
 
     // Поля класса
     private Buildings _building;
+    
 
     // Геттеры и Сеттеры
     public Buildings GetBuilding() => _building;
     public bool isOccupied => _building != null;
 
-    public void SetBuilding(Buildings buildingPrefab, Transform parent)
+    public void SetBuilding(Buildings newBuilding)
     {
-        if (_building != null)
-            Destroy(_building.gameObject);
-
-        _building = Instantiate(buildingPrefab, (Vector2)transform.position + _boxCollider2D.offset, Quaternion.identity, parent);
+        _building = newBuilding;
+        _building.transform.position = (Vector2)transform.position + _boxCollider2D.offset;
 
         OnDeselected();
     }

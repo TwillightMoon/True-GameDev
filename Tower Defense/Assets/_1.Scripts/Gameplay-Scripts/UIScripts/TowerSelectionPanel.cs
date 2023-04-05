@@ -6,9 +6,9 @@ public class TowerSelectionPanel : MonoBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private Vector2 _offset;
 
-    [SerializeField] private Transform parentForTower;
+    [SerializeField] private BuildingBuilder buildingBuilder;
 
-    private TacticalPoint _currentPosition;
+    private TacticalPoint _currentTacticalPoint;
 
 
     private void Awake()
@@ -20,7 +20,7 @@ public class TowerSelectionPanel : MonoBehaviour
 
     private void SetActive(TacticalPoint pos)
     {
-        _currentPosition = pos;
+        _currentTacticalPoint = pos;
         transform.position = (Vector2)pos.transform.position + _offset;
         _panel.SetActive(true);
     }
@@ -29,12 +29,12 @@ public class TowerSelectionPanel : MonoBehaviour
         if(_panel.activeSelf)
         {
             _panel.SetActive(false);
-            _currentPosition = null;
+            _currentTacticalPoint = null;
         }
     }
 
     public void CreateTower(CombatTower tower)
     {
-        _currentPosition.SetBuilding(tower, parentForTower);
+        buildingBuilder.Build(_currentTacticalPoint, tower);
     }
 }

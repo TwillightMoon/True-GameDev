@@ -208,9 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyDetector: {fileID: 4898733714896564602}
+  _buildingCharacteristic: {fileID: 11400000, guid: f807cd19cc94dfa42a14b1ad20af6304, type: 2}
   _towerLevels:
-  - {fileID: 11400000, guid: c0d037f55b57f504b990df0c5dc0dcad, type: 2}
   - {fileID: 11400000, guid: f807cd19cc94dfa42a14b1ad20af6304, type: 2}
+  - {fileID: 11400000, guid: c0d037f55b57f504b990df0c5dc0dcad, type: 2}
   - {fileID: 11400000, guid: 3158de386aa1fa241acbb4c9c633052a, type: 2}
   towerStates:
   - {fileID: 4584122805324697350}

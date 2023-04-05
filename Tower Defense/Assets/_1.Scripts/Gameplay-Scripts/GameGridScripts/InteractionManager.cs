@@ -24,7 +24,7 @@ public class InteractionManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {

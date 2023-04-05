@@ -13,7 +13,7 @@ public abstract class Buildings : MonoBehaviour, IStateChange
     protected SpriteRenderer _spriteRenderer;
 
     [Header("Характеристика постройки")]
-    protected BuildingsConfig _buildingCharacteristic;
+    [SerializeField] protected BuildingsConfig _buildingCharacteristic;
 
     [Header("Характеристика постройки на каждом уровне")]
     private int _currentLevelIndex = 0;
@@ -24,6 +24,7 @@ public abstract class Buildings : MonoBehaviour, IStateChange
     protected TowerState currentState;
 
     public EnemyDetector enemyDetector => _enemyDetector;
+    public BuildingsConfig buildingsConfig => _buildingCharacteristic;
 
 
     protected void Init()
@@ -34,7 +35,6 @@ public abstract class Buildings : MonoBehaviour, IStateChange
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
 
         SortLevels();
-        SetLevel(Levels.First);
     }
 
 
