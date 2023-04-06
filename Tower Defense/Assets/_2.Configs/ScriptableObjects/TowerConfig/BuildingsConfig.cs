@@ -1,29 +1,35 @@
-using StatsEnums;
-using DamageTypes;
 using UnityEngine;
 
+using StatsEnums;
+using DamageTypes;
+using Structs;
 
 abstract public class BuildingsConfig : ScriptableObject
 {
     [Header("Основные свойства")]
-    [SerializeField][Tooltip("Уровень постройки")] protected Levels m_towerLevel;
-    [SerializeField][Tooltip("Стоимость")] protected ushort m_levelCost;
-    [SerializeField][Tooltip("Спрайт постройки")] protected Sprite m_towerSprite;
+    [SerializeField][Tooltip("Уровень постройки")] private Levels _towerLevel;
+    [SerializeField][Tooltip("Спрайт постройки")] private Sprite _towerSprite;
+
+    [Header("Экономические свойства")]
+    [SerializeField][Tooltip("Стоимость")] private int _levelCost;
+    [SerializeField][Tooltip("Сумма возврата при продаже")] private int _sellCost;
 
     [Header("Бовые характеристики")]
-    [SerializeField][Tooltip("Урон постройки, наносимый противнику")] protected uint m_damage;
-    [SerializeField][Tooltip("Скорость атаки в атака/минута")] protected uint m_fireRatePerMinute;
-    [SerializeField][Tooltip("Радиус действия постройки")] protected float m_combatRadius;
+    [SerializeField][Tooltip("Урон постройки, наносимый противнику")] private Damage _damage;
+    [Space]
+    [SerializeField][Tooltip("Время на следующий выстрел")] private float _fireRatePerSecond;
+    [SerializeField][Tooltip("Радиус действия постройки")] private float _combatRadius;
 
     protected DamageType m_damageType = DamageType.Physical;
 
-    public Levels towerLevel => m_towerLevel;
-    public uint levelCost => m_levelCost;
-    public Sprite towerSprite => m_towerSprite;
+    public Levels towerLevel => _towerLevel;
+    public int levelCost => _levelCost;
+    public int sellCost => _sellCost;
+    public Sprite towerSprite => _towerSprite;
 
     public virtual DamageType GetDamageType() => m_damageType;
 
-    public uint damage => m_damage;
-    public uint fireRatePerSecond => m_fireRatePerMinute;
-    public float combatRadius => m_combatRadius;
+    public Damage damage => _damage;
+    public float fireRatePerSecond => _fireRatePerSecond;
+    public float combatRadius => _combatRadius;
 }

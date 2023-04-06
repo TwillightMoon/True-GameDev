@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class EnemyDetector : MonoBehaviour
@@ -8,6 +9,8 @@ public class EnemyDetector : MonoBehaviour
     private Buildings _parentBuilding;
 
     private LinkedList<Enemy> _enemyList;
+
+    public UnityEvent onEnemyEnter;
 
     public float combatRadius
     {
@@ -55,7 +58,7 @@ public class EnemyDetector : MonoBehaviour
 
             if (_enemyList.Count == 1)
             {
-                _parentBuilding.IntoCombat();
+                onEnemyEnter.Invoke();
             }
         }
     }

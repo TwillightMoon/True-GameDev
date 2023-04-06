@@ -7,12 +7,11 @@ public class BuildingBuilder : MonoBehaviour
 
     public void Build(TacticalPoint placeForBuild, Buildings buildPrefab)
     {
-        Debug.Log(buildPrefab.buildingsConfig);
-        uint buildingCost = buildPrefab.buildingsConfig.levelCost;
+        int buildingCost = buildPrefab.buildingsConfig.levelCost;
 
         if (CheckBalance(buildingCost))
         {
-            walletScript.SubFromCurrentBalance((int)buildingCost);
+            walletScript.SubFromCurrentBalance(buildingCost);
             placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
         }
         else
@@ -21,9 +20,37 @@ public class BuildingBuilder : MonoBehaviour
         }
     }
 
-    private bool CheckBalance(uint buildingCost)
+    public void UpgradeTower(TacticalPoint placeForBuild)
     {
-        uint currentBalance = (uint)walletScript.currentBalance;
+        BuildingsConfig buildingConfig = placeForBuild.GetBuilding().GetNextLevel();
+        if (buildingConfig)
+        {
+            int buildingUpgradeCost = buildingConfig.levelCost;
+
+            if (CheckBalance(buildingUpgradeCost))
+            {
+                placeForBuild.GetBuilding().SetNextLevel();
+                walletScript.SubFromCurrentBalance(buildingUpgradeCost);
+            }
+            else
+            {
+                Debug.Log("Недостаточно средсв!");
+            }
+        }
+    }
+
+    public void SellBuild(TacticalPoint placeForBuild)
+    {
+        BuildingsConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
+        int buildingSellCost = buildingConfig.sellCost;
+
+        walletScript.AddToCurrentBalace(buildingSellCost);
+        placeForBuild.DescructBuilding();
+    }
+
+    private bool CheckBalance(int buildingCost)
+    {
+        int currentBalance = walletScript.currentBalance;
 
         return currentBalance >= buildingCost;
     }

@@ -15,7 +15,6 @@ public class TacticalPoint : MonoBehaviour
     // Поля класса
     private Buildings _building;
     
-
     // Геттеры и Сеттеры
     public Buildings GetBuilding() => _building;
     public bool isOccupied => _building != null;

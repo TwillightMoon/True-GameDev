@@ -9967,17 +9967,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 621989772596547024, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: _towerManager
+      value: 
+      objectReference: {fileID: 642183161}
     - target: {fileID: 621989772596547025, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: buildingBuilder
       value: 
       objectReference: {fileID: 642183161}
+    - target: {fileID: 621989772596547030, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 621989772596547030, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 621989772596547030, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 621989772596547031, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 930181076}
+    - target: {fileID: 1264538455783480380, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Name
+      value: Sell-tower
+      objectReference: {fileID: 0}
     - target: {fileID: 2900887375060642932, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_Name
       value: Level-Components
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027816791689723690, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_text
+      value: Sell
       objectReference: {fileID: 0}
     - target: {fileID: 8125878745020105457, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_Name

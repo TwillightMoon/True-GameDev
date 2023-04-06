@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d82ca59cc0aaa54b997bd9a085d654e, type: 3}
   m_Name: MachineGun-Level1
   m_EditorClassIdentifier: 
-  m_towerLevel: 1
-  m_levelCost: 50
-  m_towerSprite: {fileID: 21300000, guid: d73fa68d12e4f374691d42c04ddd8bab, type: 3}
-  m_damage: 0
-  m_fireRatePerMinute: 0
-  m_combatRadius: 0
+  _towerLevel: 0
+  _towerSprite: {fileID: 21300000, guid: d73fa68d12e4f374691d42c04ddd8bab, type: 3}
+  _levelCost: 100
+  _sellCost: 80
+  _damage:
+    minDamage: 6
+    maxDamage: 8
+  _fireRatePerSecond: 1
+  _combatRadius: 4

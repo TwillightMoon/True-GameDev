@@ -4,6 +4,7 @@ using GlobalUIEvents;
 public class InteractionPanelWithTower : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
+    [SerializeField] private BuildingBuilder _towerManager;
     [SerializeField] private Vector2 _offset;
 
     private TacticalPoint _currentTacticalPoint;
@@ -34,10 +35,10 @@ public class InteractionPanelWithTower : MonoBehaviour
 
     public void UpgradeTower()
     {
-        _currentTacticalPoint.GetBuilding().SetLevel();
+        _towerManager.UpgradeTower(_currentTacticalPoint);
     }
     public void DestructBuilding()
     {
-        _currentTacticalPoint.DescructBuilding();
+        _towerManager.SellBuild(_currentTacticalPoint);
     }
 }

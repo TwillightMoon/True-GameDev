@@ -35,26 +35,18 @@ public abstract class Buildings : MonoBehaviour, IStateChange
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
 
         SortLevels();
+        SetNewCharacteristics();
     }
 
-
-    public virtual void IntoCombat()
+    public BuildingsConfig GetNextLevel()
     {
-        ChangeState<TowerCombat>();
-    }
+        int newLevel = _currentLevelIndex + 1;
+        if(newLevel < _towerLevels.Length)
+            return _towerLevels[newLevel];
 
-    public void SetLevel(Levels newLevel)
-    {
-        _currentLevelIndex = Mathf.Clamp((int)newLevel, 0, _towerLevels.Length - 1);
-
-        if (_towerLevels[_currentLevelIndex] && _towerLevels[_currentLevelIndex].towerLevel == newLevel)
-        {
-            _buildingCharacteristic = _towerLevels[_currentLevelIndex];
-            Debug.Log(string.Format("Set new Level: {0}", newLevel));
-            SetNewCharacteristics();
-        }
+        return null;
     }
-    public void SetLevel()
+    public void SetNextLevel()
     {
         int newLevel = Mathf.Clamp(_currentLevelIndex+1, 0, _towerLevels.Length - 1);
 
