@@ -24,6 +24,7 @@ public class InteractionPanelWithTower : MonoBehaviour
 
         _panel.SetActive(true);
     }
+
     private void SetDeactive()
     {
         if (_panel.activeSelf)

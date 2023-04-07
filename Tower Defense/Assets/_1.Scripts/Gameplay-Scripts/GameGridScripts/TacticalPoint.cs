@@ -2,7 +2,7 @@ using UnityEngine;
 using GlobalUIEvents;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class TacticalPoint : MonoBehaviour
+public class TacticalPoint : MonoBehaviour, IInteractable
 {
     [Header("¬изуальные свойства")]
     [Tooltip("÷вета блока при выделении")]
@@ -47,7 +47,6 @@ public class TacticalPoint : MonoBehaviour
 
         ChangeColor(Color.white);
     }
-
 
     private void Start()
     {

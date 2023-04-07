@@ -7,11 +7,10 @@ public class InteractionManager : MonoBehaviour
 
 
     private Camera _mainCam;
-    private TacticalPoint _selectedBlock;
+    private IInteractable _selectedObject;
 
-
-    private bool _isButtonClick = false;
     private int _rayDistance = 10;
+    private bool _isButtonClick = false; 
 
     private void Awake()
     {
@@ -23,7 +22,6 @@ public class InteractionManager : MonoBehaviour
         _mainCam = Camera.main;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
@@ -31,23 +29,22 @@ public class InteractionManager : MonoBehaviour
             if (_isButtonClick)
                 _isButtonClick = false;
             else
-                SelectBlock();
+                SelectObject();
         }
     }
 
-
-    private void SelectBlock()
+    private void SelectObject()
     {
-        if (_selectedBlock)
-            _selectedBlock.OnDeselected();
+        if (_selectedObject != null)
+            _selectedObject.OnDeselected();
 
         RaycastHit2D hit = Physics2D.Raycast(_mainCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _listOfInteractivity);
-        if (hit.collider)
-        {
-            _selectedBlock = hit.collider.gameObject.GetComponent<TacticalPoint>();
-            if (_selectedBlock)
-                _selectedBlock.OnSelected();
-        }
+        if (!hit.collider) return;
+        
+        _selectedObject = hit.collider.gameObject.GetComponent<IInteractable>();
+        if (_selectedObject != null)
+            _selectedObject.OnSelected();
+        
     }
 
     private void IsButtonClick()
