@@ -39,12 +39,14 @@ public class TacticalPoint : MonoBehaviour, IInteractable
         else
             UIEvents.SendSelectedOccupiedBlock(this);
 
+
+        _building?.OnSelected();
         ChangeColor(_selectedColor);
     }
     public void OnDeselected()
     {
         UIEvents.SendDeselectBlock();
-
+        _building?.OnDeselected();
         ChangeColor(Color.white);
     }
 

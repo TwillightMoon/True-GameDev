@@ -20,4 +20,4 @@ MonoBehaviour:
     minDamage: 0
     maxDamage: 0
   _fireRatePerSecond: 0
-  _combatRadius: 0
+  _combatRadius: 4

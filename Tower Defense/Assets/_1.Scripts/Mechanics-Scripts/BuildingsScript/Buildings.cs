@@ -1,16 +1,16 @@
-using StatsEnums;
 using UnityEngine;
-
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class Buildings : MonoBehaviour, IStateChange
+public abstract class Buildings : MonoBehaviour, IStateChange, IInteractable
 {
     [Header("Компоненты")]
     [SerializeField] protected EnemyDetector _enemyDetector;
+    [SerializeField] protected CombatRadiusVisualizer _combatRadiusVisualizer;
 
     protected Rigidbody2D _rigidbody2D;
     protected SpriteRenderer _spriteRenderer;
+    
 
     [Header("Характеристика постройки")]
     [SerializeField] protected BuildingsConfig _buildingCharacteristic;
@@ -70,7 +70,13 @@ public abstract class Buildings : MonoBehaviour, IStateChange
             _spriteRenderer.sprite = _buildingCharacteristic.towerSprite;
         else
             Debug.LogError("SpriteRenderer не установлен!");
+
+        if (_combatRadiusVisualizer)
+            _combatRadiusVisualizer.SetLine(_buildingCharacteristic.combatRadius);
+        else
+            Debug.LogError("CombatRadiusVisualizer не установлен!");
     }
+
 
 
     //Реализация контракта IStateChange
@@ -114,5 +120,17 @@ public abstract class Buildings : MonoBehaviour, IStateChange
                 findResult = towerStates[i];
 
         return findResult;
+    }
+
+    public void OnSelected()
+    {
+        if(_combatRadiusVisualizer)
+            _combatRadiusVisualizer.ActiveLine(true);
+    }
+
+    public void OnDeselected()
+    {
+        if(_combatRadiusVisualizer)
+            _combatRadiusVisualizer.ActiveLine(false);
     }
 }
