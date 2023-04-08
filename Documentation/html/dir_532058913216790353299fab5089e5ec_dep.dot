@@ -1,0 +1,16 @@
+digraph "C:/Users/rober/Documents/5.GameDev/UnityProject/True-GameDev/Tower Defense/Assets/_1.Scripts/Configs/ScriptableObjects"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_fab6b04dafdcc3b36ff6014d4488f4ce {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="Configs", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_fab6b04dafdcc3b36ff6014d4488f4ce.html",tooltip=""]
+  subgraph clusterdir_532058913216790353299fab5089e5ec {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_532058913216790353299fab5089e5ec.html",tooltip=""]
+    dir_532058913216790353299fab5089e5ec [shape=plaintext, label="ScriptableObjects"];
+  dir_644425be68bdc9e3d01ee5c7bbcba118 [label="TowerConfig", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_644425be68bdc9e3d01ee5c7bbcba118.html",tooltip=""];
+  }
+  }
+}

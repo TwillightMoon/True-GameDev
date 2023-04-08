@@ -1,4 +1,5 @@
 using UnityEngine;
+using ConfigClasses.BuildingConfig;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
