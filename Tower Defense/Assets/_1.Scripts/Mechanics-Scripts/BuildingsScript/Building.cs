@@ -15,29 +15,29 @@ namespace Buildings
     public abstract class Building : MonoBehaviour, IStateChange, IInteractable
     {
         [Header("Компоненты")]
-        [SerializeField] protected EnemyDetector _enemyDetector; /**< EnemyDetector variable. Компонент, отвечающий за обнаружение врагов*/
-        [SerializeField] protected CombatRadiusVisualizer _combatRadiusVisualizer /**< CombatRadiusVisualizer variable. Компонент, отвечающий за визуализацию радиуса*/;
+        [SerializeField] protected EnemyDetector _enemyDetector; /**< EnemyDetector variable. Компонент, отвечающий за обнаружение врагов. */
+        [SerializeField] protected CombatRadiusVisualizer _combatRadiusVisualizer /**< CombatRadiusVisualizer variable. Компонент, отвечающий за визуализацию радиуса. */;
 
-        protected Rigidbody2D _rigidbody2D /**< Rigidbody2D variable. Компонент, отвечающий за физическую обработку */;
-        protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта*/;
+        protected Rigidbody2D _rigidbody2D /**< Rigidbody2D variable. Компонент, отвечающий за физическую обработку. */;
+        protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
 
 
         [Header("Характеристика постройки")]
-        [SerializeField] protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки*/;
+        [SerializeField] protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
 
         [Header("Характеристика постройки на каждом уровне")]
-        private int _currentLevelIndex = 0 /** < integer variable. Индекс текущего уровня постройки */;
-        [SerializeField] protected BuildingsConfig[] _towerLevels /** < integer[] variable. Массив уровней построки*/;
+        private int _currentLevelIndex = 0 /**< integer variable. Индекс текущего уровня постройки */;
+        [SerializeField] protected BuildingsConfig[] _towerLevels /**< integer[] variable. Массив уровней построки. */;
 
         [Header("Состояния постройки")]
-        [SerializeField] protected TowerState[] towerStates; /** < TowerState[] variable. Массив состояний построки */
-        protected TowerState currentState /** < TowerState variable. Текущее состояние*/;
+        [SerializeField] protected TowerState[] towerStates; /**< TowerState[] variable. Массив состояний построки. */
+        protected TowerState currentState /**< TowerState variable. Текущее состояние */;
 
         public EnemyDetector enemyDetector => _enemyDetector;
         public BuildingsConfig buildingsConfig => _buildingCharacteristic;
 
         /**
-         * Метод инициализации объекта. Вызывается из конкретной постройки в методе Start()
+        * Метод инициализации объекта. Вызывается из конкретной постройки в методе Start().
         */
         protected void Init()
         {
@@ -51,7 +51,9 @@ namespace Buildings
         }
 
         /**
-         * Метод получения возможного следующего уровня постройки
+         * Метод получения возможного следующего уровня постройки.
+         * @return Следующий доступный уровень или null.
+         * @see SetNextLevel()
         */
         public BuildingsConfig GetNextLevel()
         {
@@ -62,7 +64,8 @@ namespace Buildings
             return null;
         }
         /**
-         * Метод улучшения характеристик башни, посредством увеличения её уровня
+         * Метод улучшения характеристик башни, посредством увеличения её уровня.
+         * @see SetNewCharacteristics()
         */
         public void SetNextLevel()
         {
@@ -77,7 +80,8 @@ namespace Buildings
             }
         }
         /**
-         * Метод обновления текущий характеристик
+         * Метод, обновляющий характеристики постройки. Cледует после SetNewLevel().
+         * @see SetNewLevel()
         */
         private void SetNewCharacteristics()
         {
@@ -98,8 +102,8 @@ namespace Buildings
         }
 
 
-        /** Реализация контракта IStateChange
-         * Метод смены текущего состояния
+        /** Реализация контракта IStateChange.
+         * Метод смены текущего состояния.
         */
         public void ChangeState<T>() where T : State
         {
@@ -143,16 +147,16 @@ namespace Buildings
             return findResult;
         }
 
-        /** Реализация контракта IInteractable
-         * Метод, выполняющийся при выделении постойки игроком
+        /** Реализация контракта IInteractable.
+         * Метод, выполняющийся при выделении постойки игроком.
         */
         public void OnSelected()
         {
             if (_combatRadiusVisualizer)
                 _combatRadiusVisualizer.ActiveLine(true);
         }
-        /** Реализация контракта IInteractable
-        * Метод, выполняющийся при отмене выделения постойки игроком
+        /** Реализация контракта IInteractable.
+        * Метод, выполняющийся при отмене выделения постойки игроком.
         */
         public void OnDeselected()
         {
