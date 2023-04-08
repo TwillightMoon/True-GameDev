@@ -3,7 +3,7 @@ using ConfigClasses.BuildingConfig;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public abstract class Buildings : MonoBehaviour, IStateChange, IInteractable
+public abstract class Building : MonoBehaviour, IStateChange, IInteractable
 {
     [Header("Компоненты")]
     [SerializeField] protected EnemyDetector _enemyDetector;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class CombatTower : Buildings
+public class CombatTower : Building
 {
     private void Start()
     {

@@ -1,12 +1,12 @@
 using UnityEngine;
 using ConfigClasses.BuildingConfig;
 
-public class BuildingBuilder : MonoBehaviour
+public class BuildingManager : MonoBehaviour
 {
     [SerializeField] private WalletScript walletScript;
     [SerializeField] private Transform parentObjForBuildings;
 
-    public void Build(TacticalPoint placeForBuild, Buildings buildPrefab)
+    public void Build(TacticalPoint placeForBuild, Building buildPrefab)
     {
         int buildingCost = buildPrefab.buildingsConfig.levelCost;
 

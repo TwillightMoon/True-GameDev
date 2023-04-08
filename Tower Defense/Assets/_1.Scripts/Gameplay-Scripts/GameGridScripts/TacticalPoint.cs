@@ -13,13 +13,13 @@ public class TacticalPoint : MonoBehaviour, IInteractable
     private BoxCollider2D _boxCollider2D;
 
     // Поля класса
-    private Buildings _building;
+    private Building _building;
     
     // Геттеры и Сеттеры
-    public Buildings GetBuilding() => _building;
+    public Building GetBuilding() => _building;
     public bool isOccupied => _building != null;
 
-    public void SetBuilding(Buildings newBuilding)
+    public void SetBuilding(Building newBuilding)
     {
         _building = newBuilding;
         _building.transform.position = (Vector2)transform.position + _boxCollider2D.offset;

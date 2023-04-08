@@ -4,7 +4,7 @@ using GlobalUIEvents;
 public class InteractionPanelWithTower : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
-    [SerializeField] private BuildingBuilder _towerManager;
+    [SerializeField] private BuildingManager _towerManager;
     [SerializeField] private Vector2 _offset;
 
     private TacticalPoint _currentTacticalPoint;

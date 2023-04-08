@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class EnemyDetector : MonoBehaviour
 {
     private CircleCollider2D _circleCollider2d;
-    private Buildings _parentBuilding;
+    private Building _parentBuilding;
 
     private LinkedList<Enemy> _enemyList;
 
@@ -22,7 +22,7 @@ public class EnemyDetector : MonoBehaviour
         }
     }
 
-    public void Init(Buildings parent)
+    public void Init(Building parent)
     {
         _enemyList = new LinkedList<Enemy>();
         _circleCollider2d = GetComponent<CircleCollider2D>();
@@ -45,7 +45,7 @@ public class EnemyDetector : MonoBehaviour
         return false;
     }
 
-    private void SetParent(Buildings parentBuilding) => this._parentBuilding = parentBuilding;
+    private void SetParent(Building parentBuilding) => this._parentBuilding = parentBuilding;
 
     //Отслеживание противников в радиусе
     private void OnTriggerEnter2D(Collider2D collision)
