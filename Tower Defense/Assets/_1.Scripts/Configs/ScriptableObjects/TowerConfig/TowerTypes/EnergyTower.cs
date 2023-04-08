@@ -1,8 +1,15 @@
 using UnityEngine;
 using DamageTypes;
 
-[CreateAssetMenu(fileName = "EnergyTower", order = 1, menuName = "Gameplay/Towers/New EnergyTower")]
-public class EnergyTower : BuildingsConfig
+namespace ConfigClasses
 {
-    public override DamageType GetDamageType() => DamageType.Energy;
+    namespace BuildingConfig
+    {
+        [CreateAssetMenu(fileName = "EnergyTower", order = 1, menuName = "Gameplay/Towers/New EnergyTower")]
+        public class EnergyTower : BuildingsConfig
+        {
+            public override DamageType GetDamageType() => DamageType.Energy;
+        }
+    }
 }
+

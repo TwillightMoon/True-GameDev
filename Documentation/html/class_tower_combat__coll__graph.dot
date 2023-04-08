@@ -1,0 +1,36 @@
+digraph "TowerCombat"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="TowerCombat",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="TowerState",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_tower_state.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="State",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_state.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node4 [label="MonoBehaviour",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node5 [label="IStateChange",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$interface_i_state_change.html",tooltip=" "];
+  Node6 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" parentTower" ];
+  Node6 [label="CombatTower",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_combat_tower.html",tooltip=" "];
+  Node7 -> Node6 [dir="back",color="steelblue1",style="solid"];
+  Node7 [label="Buildings",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_buildings.html",tooltip=" "];
+  Node4 -> Node7 [dir="back",color="steelblue1",style="solid"];
+  Node5 -> Node7 [dir="back",color="steelblue1",style="solid"];
+  Node8 -> Node7 [dir="back",color="steelblue1",style="solid"];
+  Node8 [label="IInteractable",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$interface_i_interactable.html",tooltip=" "];
+  Node9 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" _enemyDetector" ];
+  Node9 [label="EnemyDetector",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_enemy_detector.html",tooltip=" "];
+  Node4 -> Node9 [dir="back",color="steelblue1",style="solid"];
+  Node10 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" _combatRadiusVisualizer" ];
+  Node10 [label="CombatRadiusVisualizer",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_combat_radius_visualizer.html",tooltip=" "];
+  Node4 -> Node10 [dir="back",color="steelblue1",style="solid"];
+  Node11 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" _buildingCharacteristic\n_towerLevels" ];
+  Node11 [label="ConfigClasses.BuildingConfig.\lBuildingsConfig",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_config_classes_1_1_building_config_1_1_buildings_config.html",tooltip="Родительский класс Родительский класс, содержащий все характеристики для построек"];
+  Node12 -> Node11 [dir="back",color="steelblue1",style="solid"];
+  Node12 [label="ScriptableObject",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node7 [dir="back",color="darkorchid3",style="dashed",label=" currentState\ntowerStates" ];
+}
