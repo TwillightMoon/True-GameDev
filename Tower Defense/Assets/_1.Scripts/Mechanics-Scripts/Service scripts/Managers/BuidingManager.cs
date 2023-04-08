@@ -1,5 +1,6 @@
 using UnityEngine;
 using ConfigClasses.BuildingConfig;
+using Buildings;
 
 public class BuildingManager : MonoBehaviour
 {

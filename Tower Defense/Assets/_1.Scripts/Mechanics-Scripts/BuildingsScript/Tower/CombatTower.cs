@@ -1,26 +1,33 @@
 using UnityEngine;
+using Buildings.TowerStates;
 
-
-public class CombatTower : Building
+namespace Buildings
 {
-    private void Start()
+    /** Конкретизация базового класса Building.
+     * Данный класс является реализацией для боевых башен.
+     */
+    public class CombatTower : Building
     {
-        if (_enemyDetector)
-            _enemyDetector.Init(this);
-
-        Init();
-
-        if (towerStates.Length != 0)
+        private void Start()
         {
-            for (int i = 0; i < towerStates.Length; i++)
-                towerStates[i].Init(this);
-        }
-        
-        ChangeState<TowerChill>();
-    }
+            if (_enemyDetector)
+                _enemyDetector.Init(this);
 
-    private void Update()
-    {
-        currentState.UpdateRun();
+            Init();
+
+            if (towerStates.Length != 0)
+            {
+                for (int i = 0; i < towerStates.Length; i++)
+                    towerStates[i].Init(this);
+            }
+
+            ChangeState<TowerChill>();
+        }
+
+        private void Update()
+        {
+            currentState.UpdateRun();
+        }
     }
 }
+

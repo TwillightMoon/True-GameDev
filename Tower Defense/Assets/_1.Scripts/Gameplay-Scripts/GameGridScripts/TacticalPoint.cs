@@ -1,4 +1,5 @@
 using UnityEngine;
+using Buildings;
 using GlobalUIEvents;
 
 [RequireComponent(typeof(BoxCollider2D))]
