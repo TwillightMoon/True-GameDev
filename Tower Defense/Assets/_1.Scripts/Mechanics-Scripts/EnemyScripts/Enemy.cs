@@ -1,6 +1,13 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace Unit
 {
-    
+    /** Пространство имён, содержащее классы реализации функционала вражеских Юнитов */
+    namespace EnemyScrips
+    {
+        public class Enemy : Unit
+        {
+
+        }
+    }
 }

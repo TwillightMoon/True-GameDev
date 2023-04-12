@@ -1,12 +1,14 @@
 using UnityEngine;
+using Buildings;
 using GlobalUIEvents;
+using Managers;
 
 public class TowerSelectionPanel : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
     [SerializeField] private Vector2 _offset;
 
-    [SerializeField] private BuildingBuilder buildingBuilder;
+    [SerializeField] private BuildingManager buildingBuilder;
 
     private TacticalPoint _currentTacticalPoint;
 

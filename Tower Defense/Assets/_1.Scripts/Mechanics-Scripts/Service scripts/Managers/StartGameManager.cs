@@ -1,15 +1,20 @@
 using UnityEngine;
 
-public class StartGameManager : MonoBehaviour
+namespace Managers
 {
-    [Header("Компоненты")]
-    [SerializeField] private WalletScript _walletScript;
-
-    [Header("Свойства уровня")]
-    [SerializeField] private int _startBalance;
-
-    private void Start()
+    /** Менеджер, содержащий и применяющий все настроки к уровню */
+    public class StartGameManager : MonoBehaviour
     {
-        _walletScript.SetCurrentBalace(_startBalance);
+        [Header("Компоненты")]
+        [SerializeField] private WalletScript _walletScript; /**< WalletScript variable. Объект, содержащий текующий баланс игрока. */
+
+        [Header("Свойства уровня")]
+        [SerializeField] private int _startBalance; /**< Integer variable. Начальный баланс на уровне */
+
+        private void Start()
+        {
+            _walletScript.SetCurrentBalace(_startBalance);
+        }
     }
 }
+
