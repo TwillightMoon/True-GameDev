@@ -2,58 +2,79 @@ using UnityEngine;
 using ConfigClasses.BuildingConfig;
 using Buildings;
 
-public class BuildingManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] private WalletScript walletScript;
-    [SerializeField] private Transform parentObjForBuildings;
+    /** Менеджер, отвечающий за взаимодействие с постройками. 
+     * Эти взаимодейтсвия включают в себя строительство (покупку), улучшение.
+     */
 
-    public void Build(TacticalPoint placeForBuild, Building buildPrefab)
+    public class BuildingManager : MonoBehaviour
     {
-        int buildingCost = buildPrefab.buildingsConfig.levelCost;
+        [SerializeField] private WalletScript walletScript; /**< WalletScript variable. Объект, содержащий текующий баланс игрока. */
+        [SerializeField] private Transform parentObjForBuildings; /**< Transform variable. Родительский объект для всех новых построек. */
 
-        if (CheckBalance(buildingCost))
-        {
-            walletScript.SubFromCurrentBalance(buildingCost);
-            placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
-        }
-        else
-        {
-            Debug.Log("Недостаточно средсв!");
-        }
-    }
+        /** Метод для строительства (создания) новой постройки.
+         * @param TacticalPoint placeForBuild - позиция для новой построки.
+         * @param Building buildPrefab - шаблон новой постройки.
+         */
 
-    public void UpgradeTower(TacticalPoint placeForBuild)
-    {
-        BuildingsConfig buildingConfig = placeForBuild.GetBuilding().GetNextLevel();
-        if (buildingConfig)
+        public void Build(TacticalPoint placeForBuild, Building buildPrefab)
         {
-            int buildingUpgradeCost = buildingConfig.levelCost;
+            int buildingCost = buildPrefab.buildingsConfig.levelCost;
 
-            if (CheckBalance(buildingUpgradeCost))
+            if (CheckBalance(buildingCost))
             {
-                placeForBuild.GetBuilding().SetNextLevel();
-                walletScript.SubFromCurrentBalance(buildingUpgradeCost);
+                walletScript.SubFromCurrentBalance(buildingCost);
+                placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
             }
             else
             {
                 Debug.Log("Недостаточно средсв!");
             }
         }
-    }
 
-    public void SellBuild(TacticalPoint placeForBuild)
-    {
-        BuildingsConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
-        int buildingSellCost = buildingConfig.sellCost;
+        /** Метод улучшения постройки.
+         * @param TacticalPoint placeForBuild - Позиция, на которой распологается башня.
+         */
+        public void UpgradeTower(TacticalPoint placeForBuild)
+        {
+            BuildingsConfig buildingConfig = placeForBuild.GetBuilding().GetNextLevel();
+            if (buildingConfig)
+            {
+                int buildingUpgradeCost = buildingConfig.levelCost;
 
-        walletScript.AddToCurrentBalace(buildingSellCost);
-        placeForBuild.DescructBuilding();
-    }
+                if (CheckBalance(buildingUpgradeCost))
+                {
+                    placeForBuild.GetBuilding().SetNextLevel();
+                    walletScript.SubFromCurrentBalance(buildingUpgradeCost);
+                }
+                else
+                {
+                    Debug.Log("Недостаточно средсв!");
+                }
+            }
+        }
 
-    private bool CheckBalance(int buildingCost)
-    {
-        int currentBalance = walletScript.currentBalance;
+        /** Метод продажи постройки.
+         * @param TacticalPoint placeForBuild - Позиция, на которой распологается башня.
+         */
+        public void SellBuild(TacticalPoint placeForBuild)
+        {
+            BuildingsConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
+            int buildingSellCost = buildingConfig.sellCost;
 
-        return currentBalance >= buildingCost;
+            walletScript.AddToCurrentBalace(buildingSellCost);
+            placeForBuild.DescructBuilding();
+        }
+
+        /** Метод проверки необходимой суммы в кошельке.
+         * @param int buildingCost - сумма, которую необходимо вычесть.
+         */
+        private bool CheckBalance(int buildingCost)
+        {
+            int currentBalance = walletScript.currentBalance;
+
+            return currentBalance >= buildingCost;
+        }
     }
 }

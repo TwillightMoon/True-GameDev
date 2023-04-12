@@ -1,5 +1,6 @@
 using UnityEngine;
 using GlobalUIEvents;
+using Managers;
 
 public class InteractionPanelWithTower : MonoBehaviour
 {
