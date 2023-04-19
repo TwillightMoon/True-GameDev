@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Unit.EnemyScrips;
+using ConfigClasses.BuildingConfig;
+using System;
 
 namespace Buildings
 {
     [RequireComponent(typeof(CircleCollider2D))]
-    public class EnemyDetector : MonoBehaviour
+    public class EnemyDetector : MonoBehaviour, IModule
     {
         private CircleCollider2D _circleCollider2d;
         private Building _parentBuilding;
@@ -15,22 +17,37 @@ namespace Buildings
 
         public UnityEvent onEnemyEnter;
 
-        public float combatRadius
-        {
-            get => _circleCollider2d.radius;
+        private float combatRadius;
 
-            set
-            {
-                if (value > 0) _circleCollider2d.radius = value;
-            }
-        }
-
-        public void Init(Building parent)
+        private void Awake()
         {
             _enemyList = new LinkedList<Enemy>();
             _circleCollider2d = GetComponent<CircleCollider2D>();
             _circleCollider2d.isTrigger = true;
-            SetParent(parent);
+
+            SetParent();
+        }
+
+        private void SetParent()
+        {
+            try
+            {
+                _parentBuilding = (Building)FindParentHub();
+            }
+            catch (InvalidCastException e)
+            {
+                Debug.LogError("Произошла ошибка приведения типов: " + e.Message);
+
+            }
+        }
+
+        private void OnEnable()
+        {
+            _parentBuilding.AddModule(this);
+        }
+        private void OnDisable()
+        {
+            _parentBuilding.RemoveModule(this);
         }
 
         public Enemy GetNextEnemy()
@@ -48,7 +65,7 @@ namespace Buildings
             return false;
         }
 
-        private void SetParent(Building parentBuilding) => this._parentBuilding = parentBuilding;
+
 
         //Отслеживание противников в радиусе
         private void OnTriggerEnter2D(Collider2D collision)
@@ -80,6 +97,20 @@ namespace Buildings
                 Gizmos.color = Color.green; // устанавливаем цвет
                 Gizmos.DrawWireSphere(transform.position, _circleCollider2d.radius); // рисуем окружность
             }
+        }
+
+        public void SetSpecifications(BuildingsConfig specifications)
+        {
+            if (specifications.combatRadius < 0) return;
+
+            _circleCollider2d.radius = specifications.combatRadius;
+        }
+
+        public IModuleHub FindParentHub()
+        {
+            IModuleHub moduleHub = transform.GetComponentInParent<IModuleHub>();
+
+            return moduleHub;
         }
     }
 

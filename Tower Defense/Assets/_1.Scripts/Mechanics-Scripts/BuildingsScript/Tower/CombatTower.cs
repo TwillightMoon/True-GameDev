@@ -10,8 +10,6 @@ namespace Buildings
     {
         private void Start()
         {
-            if (enemyDetector)
-                enemyDetector.Init(this);
 
             Init();
 

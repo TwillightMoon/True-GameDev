@@ -1,6 +1,8 @@
 using UnityEngine;
 using ConfigClasses.BuildingConfig;
 using Buildings.TowerStates;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
 /** Пространство имен классов, что относятся к постройкам.
  *  К этому пространству имён относятся классы, наследующиеся от Building, а также модули, дополняющие поведение построек.
@@ -12,12 +14,18 @@ namespace Buildings
     */
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public abstract class Building : MonoBehaviour, IStateChange, IInteractable
+    public abstract class Building : 
+        MonoBehaviour, IStateChange, IInteractable, IModuleHub
     {
-        [Header("Компоненты")]
+        public UnityEvent onSelect = new UnityEvent();
+        public UnityEvent onDeselect = new UnityEvent();
+
+        [Header("Модули")]
         [SerializeField] protected EnemyDetector _enemyDetector; /**< EnemyDetector variable. Компонент, отвечающий за обнаружение врагов. */
         [SerializeField] protected CombatRadiusVisualizer _combatRadiusVisualizer /**< CombatRadiusVisualizer variable. Компонент, отвечающий за визуализацию радиуса. */;
+        private LinkedList<IModule> modules = new LinkedList<IModule>();
 
+        [Header("Компоненты")]
         protected Rigidbody2D _rigidbody2D /**< Rigidbody2D variable. Компонент, отвечающий за физическую обработку. */;
         protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
 
@@ -85,20 +93,15 @@ namespace Buildings
         */
         private void SetNewCharacteristics()
         {
-            if (_enemyDetector)
-                _enemyDetector.combatRadius = _buildingCharacteristic.combatRadius;
-            else
-                Debug.LogError("EnemyDetector не установлен!");
-
             if (_spriteRenderer)
                 _spriteRenderer.sprite = _buildingCharacteristic.towerSprite;
             else
                 Debug.LogError("SpriteRenderer не установлен!");
 
-            if (_combatRadiusVisualizer)
-                _combatRadiusVisualizer.SetLine(_buildingCharacteristic.combatRadius);
-            else
-                Debug.LogError("CombatRadiusVisualizer не установлен!");
+            foreach(IModule item in modules)
+            {
+                item.SetSpecifications(buildingsConfig);
+            }
         }
 
 
@@ -152,16 +155,25 @@ namespace Buildings
         */
         public void OnSelected()
         {
-            if (_combatRadiusVisualizer)
-                _combatRadiusVisualizer.ActiveLine(true);
+            onSelect.Invoke();
         }
         /** Реализация контракта IInteractable.
         * Метод, выполняющийся при отмене выделения постойки игроком.
         */
         public void OnDeselected()
         {
-            if (_combatRadiusVisualizer)
-                _combatRadiusVisualizer.ActiveLine(false);
+            onDeselect.Invoke();
+            Debug.Log("Deselect");
+        }
+
+        public void AddModule(IModule module)
+        {
+            modules.AddLast(module);
+        }
+
+        public void RemoveModule(IModule module)
+        {
+            modules.Remove(module);
         }
     }
 }
