@@ -13,7 +13,7 @@ namespace Buildings
             /** Метод инициализации состояния.
              * @param parentTower. Родительская башня.
              */
-            public void Init(CombatTower parentTower)
+            public virtual void Init(CombatTower parentTower)
             {
                 if (!this.parentTower)
                     this.parentTower = parentTower;

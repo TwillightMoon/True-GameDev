@@ -1,7 +1,7 @@
 using Buildings;
 using ConfigClasses.BuildingConfig;
 using System;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -9,6 +9,7 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
 {
     [Header("Свойства")]
     [SerializeField] private int _segments;
+    [SerializeField] [Min(0.01F)] private float _yRadiusCoeff;
 
     [SerializeField] private float _lineWidth;
     [SerializeField] private Color _lineColor;
@@ -31,18 +32,27 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
 
         SetParent();
 
-        _parentBuilding.onSelect.AddListener(ActiveLine);
         _parentBuilding.onDeselect.AddListener(DeactiveLine);
 
     }
 
+    public void ActiveLine() => _lineRenderer.enabled = true;
+    public void DeactiveLine() => _lineRenderer.enabled = false;
+
     private void OnEnable()
     {
         _parentBuilding.AddModule(this);
+        _parentBuilding.onSelect.AddListener(ActiveLine);
+        _lineRenderer.enabled = _parentBuilding.isSelect;
+
+        SetSpecifications(_parentBuilding.buildingsConfig);
     }
     private void OnDisable()
     {
+        _parentBuilding.onSelect.RemoveListener(ActiveLine);
         _parentBuilding.RemoveModule(this);
+
+        DeactiveLine();
     }
 
     private void SetParent()
@@ -54,17 +64,16 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
         catch (InvalidCastException e)
         {
             Debug.LogError("Произошла ошибка приведения типов: " + e.Message);
-
         }
     }
 
-    public void ActiveLine()
+    private void OnDrawGizmos()
     {
-        _lineRenderer.enabled = true;
-    }
-    public void DeactiveLine()
-    {
-        _lineRenderer.enabled = false;
+        if (Application.isPlaying)
+        {
+            Gizmos.color = Color.green; // устанавливаем цвет
+            Gizmos.DrawWireSphere(transform.position, radius); // рисуем окружность
+        }
     }
 
     private void SetLine()
@@ -75,7 +84,8 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
         for (int i = 0; i < _segments + 1; i++)
         {
             float x = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
-            float y = Mathf.Cos(angle * Mathf.Deg2Rad) * (radius * 0.90F);
+            float y = Mathf.Cos(angle * Mathf.Deg2Rad) * (radius * _yRadiusCoeff);
+
             points[i] = new Vector3(x, y, 0f) + transform.position;
             angle += 360f / _segments;
         }

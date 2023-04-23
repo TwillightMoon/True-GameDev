@@ -8,17 +8,23 @@ namespace Buildings
         /** Состояние, определяющее поведение башни в состоянии боя. */
         public class TowerCombat : TowerState
         {
-            [Header("Префабы")]
-            [SerializeField] GameObject bullet /**< GameObject variable. Префаб пули. */;
 
+            private EnemyDetector _enemyDetector;
             private Enemy _currentEnemy /**< Enemy variable. Переменная, хранящего текущую цель для атаки. */;
+
+            public override void Init(CombatTower parentTower)
+            {
+                base.Init(parentTower);
+
+                _enemyDetector = parentTower.GetComponentInChildren<EnemyDetector>();
+            }
 
             /**Метод старта состояния. 
              * Метод берет первого врага, вошедшего в зону действия.
              */
             public override void StateStart()
             {
-                _currentEnemy = parentTower.enemyDetector.GetNextEnemy();
+                _currentEnemy = _enemyDetector.GetNextEnemy();
                 Debug.Log(_currentEnemy);
             }
 
@@ -36,7 +42,7 @@ namespace Buildings
              */
             public override void UpdateRun()
             {
-                if (_currentEnemy && parentTower.enemyDetector.IsHeadLink(_currentEnemy))
+                if (_currentEnemy && _enemyDetector.IsHeadLink(_currentEnemy))
                     Debug.Log((_currentEnemy.transform.position - transform.position).normalized);
                 else
                     ChangeState<TowerChill>();

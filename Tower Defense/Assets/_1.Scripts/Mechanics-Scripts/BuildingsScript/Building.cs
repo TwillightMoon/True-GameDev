@@ -17,21 +17,20 @@ namespace Buildings
     public abstract class Building : 
         MonoBehaviour, IStateChange, IInteractable, IModuleHub
     {
-        public UnityEvent onSelect = new UnityEvent();
-        public UnityEvent onDeselect = new UnityEvent();
+        //События
+        [HideInInspector] public UnityEvent onSelect = new UnityEvent();
+        [HideInInspector] public UnityEvent onDeselect = new UnityEvent();
 
         [Header("Модули")]
-        [SerializeField] protected EnemyDetector _enemyDetector; /**< EnemyDetector variable. Компонент, отвечающий за обнаружение врагов. */
-        [SerializeField] protected CombatRadiusVisualizer _combatRadiusVisualizer /**< CombatRadiusVisualizer variable. Компонент, отвечающий за визуализацию радиуса. */;
         private LinkedList<IModule> modules = new LinkedList<IModule>();
 
         [Header("Компоненты")]
         protected Rigidbody2D _rigidbody2D /**< Rigidbody2D variable. Компонент, отвечающий за физическую обработку. */;
         protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
 
-
         [Header("Характеристика постройки")]
         [SerializeField] protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
+        [SerializeField] protected int m_id; 
 
         [Header("Характеристика постройки на каждом уровне")]
         private int _currentLevelIndex = 0 /**< integer variable. Индекс текущего уровня постройки */;
@@ -41,8 +40,13 @@ namespace Buildings
         [SerializeField] protected TowerState[] towerStates; /**< TowerState[] variable. Массив состояний построки. */
         protected TowerState currentState /**< TowerState variable. Текущее состояние */;
 
-        public EnemyDetector enemyDetector => _enemyDetector;
+        [Header("Флаги")]
+        private bool _isSelect = false;
+
         public BuildingsConfig buildingsConfig => _buildingCharacteristic;
+
+        public bool isSelect { get => this._isSelect; }
+
 
         /**
         * Метод инициализации объекта. Вызывается из конкретной постройки в методе Start().
@@ -155,6 +159,7 @@ namespace Buildings
         */
         public void OnSelected()
         {
+            _isSelect = true;
             onSelect.Invoke();
         }
         /** Реализация контракта IInteractable.
@@ -162,8 +167,8 @@ namespace Buildings
         */
         public void OnDeselected()
         {
+            _isSelect = false;
             onDeselect.Invoke();
-            Debug.Log("Deselect");
         }
 
         public void AddModule(IModule module)
