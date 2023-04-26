@@ -95,6 +95,7 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
 
     public void SetSpecifications(BuildingsConfig specifications)
     {
+        if (specifications == null) return;
         radius = specifications.combatRadius;
         SetLine();
     }

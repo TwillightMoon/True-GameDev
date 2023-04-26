@@ -236,6 +236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7470636831530494880}
   - {fileID: 2101168192047549525}
   - {fileID: 2512776482577779405}
   m_Father: {fileID: 0}
@@ -338,14 +339,57 @@ MonoBehaviour:
   onDeselect:
     m_PersistentCalls:
       m_Calls: []
-  _buildingCharacteristic: {fileID: 11400000, guid: ab49be795a9c4d5418a10108bdd187a7, type: 2}
-  _towerLevels:
-  - {fileID: 11400000, guid: ab49be795a9c4d5418a10108bdd187a7, type: 2}
-  - {fileID: 11400000, guid: 08f43777c13ca094fb5d7e581c8cd254, type: 2}
-  - {fileID: 11400000, guid: 771c899b4e6b467459af725ec999a249, type: 2}
   towerStates:
   - {fileID: 4584122805324697350}
   - {fileID: 6388376919758940821}
+--- !u!1 &4905104751448606620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7470636831530494880}
+  - component: {fileID: 5623285335057283504}
+  m_Layer: 3
+  m_Name: Modules
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &7470636831530494880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905104751448606620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3478228131289787067}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5623285335057283504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905104751448606620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bd1a75925fbf248a422085d455f608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characteristicsOfLevels:
+  - {fileID: 11400000, guid: ab49be795a9c4d5418a10108bdd187a7, type: 2}
+  - {fileID: 11400000, guid: 771c899b4e6b467459af725ec999a249, type: 2}
+  - {fileID: 11400000, guid: 08f43777c13ca094fb5d7e581c8cd254, type: 2}
 --- !u!1 &8540760617047401394
 GameObject:
   m_ObjectHideFlags: 0

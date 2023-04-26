@@ -1,8 +1,8 @@
-using UnityEngine;
-using ConfigClasses.BuildingConfig;
 using Buildings.TowerStates;
-using UnityEngine.Events;
+using ConfigClasses.BuildingConfig;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 /** Пространство имен классов, что относятся к постройкам.
  *  К этому пространству имён относятся классы, наследующиеся от Building, а также модули, дополняющие поведение построек.
@@ -14,27 +14,22 @@ namespace Buildings
     */
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public abstract class Building : 
+    public abstract class Building :
         MonoBehaviour, IStateChange, IInteractable, IModuleHub
     {
         //События
         [HideInInspector] public UnityEvent onSelect = new UnityEvent();
         [HideInInspector] public UnityEvent onDeselect = new UnityEvent();
 
-        [Header("Модули")]
-        private LinkedList<IModule> modules = new LinkedList<IModule>();
-
         [Header("Компоненты")]
         protected Rigidbody2D _rigidbody2D /**< Rigidbody2D variable. Компонент, отвечающий за физическую обработку. */;
         protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
 
-        [Header("Характеристика постройки")]
-        [SerializeField] protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
-        [SerializeField] protected int m_id; 
+        [Header("Модули")]
+        private LinkedList<IModule> modules = new LinkedList<IModule>();
 
-        [Header("Характеристика постройки на каждом уровне")]
-        private int _currentLevelIndex = 0 /**< integer variable. Индекс текущего уровня постройки */;
-        [SerializeField] protected BuildingsConfig[] _towerLevels /**< integer[] variable. Массив уровней построки. */;
+        [Header("Характеристика постройки")]
+        protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
 
         [Header("Состояния постройки")]
         [SerializeField] protected TowerState[] towerStates; /**< TowerState[] variable. Массив состояний построки. */
@@ -43,10 +38,10 @@ namespace Buildings
         [Header("Флаги")]
         private bool _isSelect = false;
 
+
         public BuildingsConfig buildingsConfig => _buildingCharacteristic;
 
         public bool isSelect { get => this._isSelect; }
-
 
         /**
         * Метод инициализации объекта. Вызывается из конкретной постройки в методе Start().
@@ -57,57 +52,26 @@ namespace Buildings
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
-
-            SortLevels();
-            SetNewCharacteristics();
         }
 
-        /**
-         * Метод получения возможного следующего уровня постройки.
-         * @return Следующий доступный уровень или null.
-         * @see SetNextLevel()
-        */
-        public BuildingsConfig GetNextLevel()
-        {
-            int newLevel = _currentLevelIndex + 1;
-            if (newLevel < _towerLevels.Length)
-                return _towerLevels[newLevel];
-
-            return null;
-        }
-        /**
-         * Метод улучшения характеристик башни, посредством увеличения её уровня.
-         * @see SetNewCharacteristics()
-        */
-        public void SetNextLevel()
-        {
-            int newLevel = Mathf.Clamp(_currentLevelIndex + 1, 0, _towerLevels.Length - 1);
-
-            if ((newLevel > _currentLevelIndex) && _towerLevels[_currentLevelIndex])
-            {
-                _currentLevelIndex = newLevel;
-                _buildingCharacteristic = _towerLevels[_currentLevelIndex];
-                Debug.Log(string.Format("Set new Level: {0}", _towerLevels[_currentLevelIndex]));
-                SetNewCharacteristics();
-            }
-        }
         /**
          * Метод, обновляющий характеристики постройки. Cледует после SetNewLevel().
          * @see SetNewLevel()
         */
-        private void SetNewCharacteristics()
+        public void SetNewCharacteristics(BuildingsConfig buildingsConfig)
         {
+            this._buildingCharacteristic = buildingsConfig;
+
             if (_spriteRenderer)
                 _spriteRenderer.sprite = _buildingCharacteristic.towerSprite;
             else
                 Debug.LogError("SpriteRenderer не установлен!");
 
-            foreach(IModule item in modules)
+            foreach (IModule item in modules)
             {
                 item.SetSpecifications(buildingsConfig);
             }
         }
-
 
         /** Реализация контракта IStateChange.
          * Метод смены текущего состояния.
@@ -124,23 +88,6 @@ namespace Buildings
             }
 
             Debug.Log($"new state {currentState} is set.");
-        }
-
-
-        private void SortLevels()
-        {
-            for (int i = 1; i < _towerLevels.Length; i++)
-            {
-                BuildingsConfig cacheConfig = _towerLevels[i];
-
-                int j = i - 1;
-                for (; j >= 0 && _towerLevels[j].towerLevel > cacheConfig.towerLevel; j--)
-                    _towerLevels[j + 1] = _towerLevels[j];
-
-                _towerLevels[j + 1] = cacheConfig;
-            }
-
-            Debug.Log("Levels was sorted");
         }
 
         private TowerState FindState<T>() where T : State
@@ -173,13 +120,12 @@ namespace Buildings
 
         public void AddModule(IModule module)
         {
-            modules.AddLast(module);
+            _ = modules.AddLast(module);
         }
 
         public void RemoveModule(IModule module)
         {
-            modules.Remove(module);
+            _ = modules.Remove(module);
         }
-    }
+    }   
 }
-

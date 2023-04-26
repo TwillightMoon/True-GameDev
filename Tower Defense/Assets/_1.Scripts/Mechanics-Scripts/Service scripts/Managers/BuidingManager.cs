@@ -1,6 +1,7 @@
-using UnityEngine;
-using ConfigClasses.BuildingConfig;
 using Buildings;
+using Buildings.Modules;
+using ConfigClasses.BuildingConfig;
+using UnityEngine;
 
 namespace Managers
 {
@@ -20,17 +21,26 @@ namespace Managers
 
         public void Build(TacticalPoint placeForBuild, Building buildPrefab)
         {
-            int buildingCost = buildPrefab.buildingsConfig.levelCost;
+            BuildingCharacteristics buildingCharacteristic = buildPrefab.GetComponentInChildren<BuildingCharacteristics>();
+            if (buildingCharacteristic == null)
+                BuildWithoutCost(placeForBuild, buildPrefab);
+            else
+                BuildWithCost(placeForBuild, buildPrefab, buildingCharacteristic.GetCurrentLevel().levelCost);
+        }
 
+        private void BuildWithoutCost(TacticalPoint placeForBuild, Building buildPrefab)
+        {
+            placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
+        }
+        private void BuildWithCost(TacticalPoint placeForBuild, Building buildPrefab, int buildingCost)
+        {
             if (CheckBalance(buildingCost))
             {
                 walletScript.SubFromCurrentBalance(buildingCost);
                 placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
             }
             else
-            {
                 Debug.Log("Недостаточно средсв!");
-            }
         }
 
         /** Метод улучшения постройки.
@@ -38,20 +48,19 @@ namespace Managers
          */
         public void UpgradeTower(TacticalPoint placeForBuild)
         {
-            BuildingsConfig buildingConfig = placeForBuild.GetBuilding().GetNextLevel();
-            if (buildingConfig)
-            {
-                int buildingUpgradeCost = buildingConfig.levelCost;
+            BuildingCharacteristics buildingCharacteristic = placeForBuild.GetBuilding().GetComponentInChildren<BuildingCharacteristics>();
+            if (buildingCharacteristic == null) return;
 
-                if (CheckBalance(buildingUpgradeCost))
-                {
-                    placeForBuild.GetBuilding().SetNextLevel();
-                    walletScript.SubFromCurrentBalance(buildingUpgradeCost);
-                }
-                else
-                {
-                    Debug.Log("Недостаточно средсв!");
-                }
+            int buildingUpgradeCost = buildingCharacteristic.GetNextLevel().levelCost;
+
+            if (CheckBalance(buildingUpgradeCost))
+            {
+                buildingCharacteristic.SetNextLevel();
+                walletScript.SubFromCurrentBalance(buildingUpgradeCost);
+            }
+            else
+            {
+                Debug.Log("Недостаточно средсв!");
             }
         }
 
@@ -66,7 +75,6 @@ namespace Managers
             walletScript.AddToCurrentBalace(buildingSellCost);
             placeForBuild.DescructBuilding();
         }
-
         /** Метод проверки необходимой суммы в кошельке.
          * @param int buildingCost - сумма, которую необходимо вычесть.
          */
