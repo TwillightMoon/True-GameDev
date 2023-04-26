@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerLevel: 0
   _towerSprite: {fileID: 21300000, guid: e592c2386b3594a4a8bf6b82a9dcec74, type: 3}
-  _levelCost: 0
-  _sellCost: 0
+  _levelCost: 220
+  _sellCost: 132
   _damage:
-    minDamage: 0
-    maxDamage: 0
-  _fireRatePerSecond: 0
+    minDamage: 15
+    maxDamage: 25
+  _fireRatePerSecond: 3
   _combatRadius: 0
   _splashRadius: 0
