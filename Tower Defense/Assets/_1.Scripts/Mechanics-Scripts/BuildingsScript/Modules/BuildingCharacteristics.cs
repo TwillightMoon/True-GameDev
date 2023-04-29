@@ -38,11 +38,11 @@ namespace Buildings.Modules
         */
         public BuildingsConfig GetNextLevel()
         {
-            int nextLevel = _currentLevelIndex + 1;
+            int nextLevelIndex = _currentLevelIndex + 1;
 
-            if (nextLevel < _characteristicsOfLevels.Length) return null;
+            if (nextLevelIndex >= _characteristicsOfLevels.Length) return null;
 
-            return _characteristicsOfLevels[nextLevel];
+            return _characteristicsOfLevels[nextLevelIndex];
         }
         public BuildingsConfig GetCurrentLevel() => _characteristicsOfLevels[0];
         /**
@@ -52,7 +52,7 @@ namespace Buildings.Modules
         public void SetNextLevel()
         {
             if (this.enabled == false) return;
-            if ((_currentLevelIndex + 1) < _characteristicsOfLevels.Length) return;
+            if ((_currentLevelIndex + 1) >= _characteristicsOfLevels.Length) return;
 
             _parent.SetNewCharacteristics(_characteristicsOfLevels[++_currentLevelIndex]);
 

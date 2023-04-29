@@ -8,8 +8,6 @@ public class TowerSelectionPanel : MonoBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private Vector2 _offset;
 
-    [SerializeField] private BuildingManager buildingBuilder;
-
     private TacticalPoint _currentTacticalPoint;
 
 
@@ -37,6 +35,6 @@ public class TowerSelectionPanel : MonoBehaviour
 
     public void CreateTower(CombatTower tower)
     {
-        buildingBuilder.Build(_currentTacticalPoint, tower);
+        BuildingManager.instance.Build(_currentTacticalPoint, tower);
     }
 }

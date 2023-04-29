@@ -20,5 +20,5 @@ MonoBehaviour:
     minDamage: 15
     maxDamage: 25
   _fireRatePerSecond: 3
-  _combatRadius: 0
+  _combatRadius: 1
   _splashRadius: 0

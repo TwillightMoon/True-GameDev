@@ -5,7 +5,6 @@ using Managers;
 public class InteractionPanelWithTower : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
-    [SerializeField] private BuildingManager _towerManager;
     [SerializeField] private Vector2 _offset;
 
     private TacticalPoint _currentTacticalPoint;
@@ -37,10 +36,10 @@ public class InteractionPanelWithTower : MonoBehaviour
 
     public void UpgradeTower()
     {
-        _towerManager.UpgradeTower(_currentTacticalPoint);
+        BuildingManager.instance.UpgradeTower(_currentTacticalPoint);
     }
     public void DestructBuilding()
     {
-        _towerManager.SellBuild(_currentTacticalPoint);
+        BuildingManager.instance.SellBuild(_currentTacticalPoint);
     }
 }

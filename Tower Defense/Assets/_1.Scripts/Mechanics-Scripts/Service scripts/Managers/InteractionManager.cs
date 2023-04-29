@@ -5,11 +5,11 @@ using GlobalUIEvents;
 namespace Managers
 {
     /** Класс-менеджер, отслеживающий действия игрока. */
-    public class InteractionManager : MonoBehaviour
+    public class InteractionManager : Singleton<InteractionManager>
     {
         private Camera _mainCam; /**< Camera variable. Компонент камеры. */
 
-        [SerializeField] 
+        [SerializeField]
         private LayerMask _listOfInteractivity; /**< LayerMask variable. Список определяющий слои, с которыми может интерактировать игрок. */ 
 
         private IInteractable _selectedObject; /**< IInteractable variable. Текущий выделенный объект. */

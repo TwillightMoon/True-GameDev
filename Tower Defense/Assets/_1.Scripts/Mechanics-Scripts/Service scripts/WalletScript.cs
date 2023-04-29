@@ -1,7 +1,7 @@
 using UnityEngine;
 using GlobalUIEvents;
 
-public class WalletScript : MonoBehaviour
+public class WalletScript : Singleton<WalletScript>
 {
     private int _currentBalance = 0;
 

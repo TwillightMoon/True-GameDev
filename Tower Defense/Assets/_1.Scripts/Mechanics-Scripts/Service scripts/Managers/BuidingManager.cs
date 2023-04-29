@@ -9,9 +9,8 @@ namespace Managers
      * Эти взаимодейтсвия включают в себя строительство (покупку), улучшение.
      */
 
-    public class BuildingManager : MonoBehaviour
+    public class BuildingManager : Singleton<BuildingManager>
     {
-        [SerializeField] private WalletScript walletScript; /**< WalletScript variable. Объект, содержащий текующий баланс игрока. */
         [SerializeField] private Transform parentObjForBuildings; /**< Transform variable. Родительский объект для всех новых построек. */
 
         /** Метод для строительства (создания) новой постройки.
@@ -36,7 +35,7 @@ namespace Managers
         {
             if (CheckBalance(buildingCost))
             {
-                walletScript.SubFromCurrentBalance(buildingCost);
+                WalletScript.instance.SubFromCurrentBalance(buildingCost);
                 placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
             }
             else
@@ -49,14 +48,15 @@ namespace Managers
         public void UpgradeTower(TacticalPoint placeForBuild)
         {
             BuildingCharacteristics buildingCharacteristic = placeForBuild.GetBuilding().GetComponentInChildren<BuildingCharacteristics>();
-            if (buildingCharacteristic == null) return;
+            if (buildingCharacteristic == null || buildingCharacteristic.GetNextLevel() == null) 
+                return;
 
             int buildingUpgradeCost = buildingCharacteristic.GetNextLevel().levelCost;
 
             if (CheckBalance(buildingUpgradeCost))
             {
                 buildingCharacteristic.SetNextLevel();
-                walletScript.SubFromCurrentBalance(buildingUpgradeCost);
+                WalletScript.instance.SubFromCurrentBalance(buildingUpgradeCost);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace Managers
             BuildingsConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
             int buildingSellCost = buildingConfig.sellCost;
 
-            walletScript.AddToCurrentBalace(buildingSellCost);
+            WalletScript.instance.AddToCurrentBalace(buildingSellCost);
             placeForBuild.DescructBuilding();
         }
         /** Метод проверки необходимой суммы в кошельке.
@@ -80,7 +80,7 @@ namespace Managers
          */
         private bool CheckBalance(int buildingCost)
         {
-            int currentBalance = walletScript.currentBalance;
+            int currentBalance = WalletScript.instance.currentBalance;
 
             return currentBalance >= buildingCost;
         }
