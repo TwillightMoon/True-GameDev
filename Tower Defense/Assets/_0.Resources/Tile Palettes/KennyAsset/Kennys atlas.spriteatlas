@@ -25,8 +25,8 @@ SpriteAtlas:
       m_BuildTarget: DefaultTexturePlatform
       m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
-      m_TextureFormat: 4
-      m_TextureCompression: 1
+      m_TextureFormat: -1
+      m_TextureCompression: 0
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -35,7 +35,7 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 8
+      padding: 2
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -45,7 +45,6 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: fe2a410be9b3ca9408010717117c2cfc, type: 3}
-    - {fileID: 2800000, guid: c78f85ad5fb584b4eb16b38d77df50f2, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -349,7 +348,6 @@ SpriteAtlas:
     - fe2a410be9b3ca9408010717117c2cfc: 1242278047
     - fe2a410be9b3ca9408010717117c2cfc: -755353221
     - fe2a410be9b3ca9408010717117c2cfc: 644623029
-    - c78f85ad5fb584b4eb16b38d77df50f2: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: -1417784728, guid: fe2a410be9b3ca9408010717117c2cfc, type: 3}
@@ -651,7 +649,6 @@ SpriteAtlas:
   - {fileID: 1242278047, guid: fe2a410be9b3ca9408010717117c2cfc, type: 3}
   - {fileID: -755353221, guid: fe2a410be9b3ca9408010717117c2cfc, type: 3}
   - {fileID: 644623029, guid: fe2a410be9b3ca9408010717117c2cfc, type: 3}
-  - {fileID: 21300000, guid: c78f85ad5fb584b4eb16b38d77df50f2, type: 3}
   m_PackedSpriteNamesToIndex:
   - towerDefense_tilesheet_161
   - towerDefense_tilesheet_175
@@ -952,7 +949,6 @@ SpriteAtlas:
   - towerDefense_tilesheet_160
   - towerDefense_tilesheet_176
   - towerDefense_tilesheet_184
-  - towerDefense_tilesheet@2
   m_RenderDataMap: {}
   m_Tag: Kennys atlas
   m_IsVariant: 0
