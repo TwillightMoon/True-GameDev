@@ -17,10 +17,10 @@ public class InteractionPanelWithTower : MonoBehaviour
         _panel.SetActive(false);
     }
 
-    private void SetActive(TacticalPoint pos)
+    private void SetActive(short positionIndex)
     {
-        _currentTacticalPoint = pos;
-        transform.position = (Vector2)pos.transform.position + _offset;
+        _currentTacticalPoint = TacticalPoints.instance.Get(positionIndex);
+        transform.position = (Vector2)_currentTacticalPoint.transform.position + _offset;
 
         _panel.SetActive(true);
     }

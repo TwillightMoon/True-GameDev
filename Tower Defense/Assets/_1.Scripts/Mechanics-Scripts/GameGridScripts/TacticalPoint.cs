@@ -15,10 +15,20 @@ public class TacticalPoint : MonoBehaviour, IInteractable
 
     // Поля класса
     private Building _building;
+    private short _pointIndex = -1;
     
     // Геттеры и Сеттеры
     public Building GetBuilding() => _building;
     public bool isOccupied => _building != null;
+    public short poinIndex
+    {
+        get => _pointIndex;
+        set
+        {
+            if (_pointIndex == -1) 
+                _pointIndex = value;
+        }
+    }
 
     public void SetBuilding(Building newBuilding)
     {
@@ -36,9 +46,9 @@ public class TacticalPoint : MonoBehaviour, IInteractable
     public void OnSelected()
     {
         if (!_building)
-            UIEvents.SendSelectedEmptyBlock(this);
+            UIEvents.SendSelectedEmptyBlock(poinIndex);
         else
-            UIEvents.SendSelectedOccupiedBlock(this);
+            UIEvents.SendSelectedOccupiedBlock(poinIndex);
 
 
         _building?.OnSelected();

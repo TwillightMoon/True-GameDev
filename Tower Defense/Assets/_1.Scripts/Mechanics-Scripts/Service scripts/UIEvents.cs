@@ -6,8 +6,8 @@ namespace GlobalUIEvents
     public class UIEvents : MonoBehaviour
     {
         //События обработки касаний
-        public static UnityEvent<TacticalPoint> onEmptyPositionSelected = new UnityEvent<TacticalPoint>();
-        public static UnityEvent<TacticalPoint> onOccupiedPositionSelect = new UnityEvent<TacticalPoint>();
+        public static UnityEvent<short> onEmptyPositionSelected = new UnityEvent<short>();
+        public static UnityEvent<short> onOccupiedPositionSelect = new UnityEvent<short>();
         public static UnityEvent onDeselectPosition = new UnityEvent();
 
         //События нажатия кнопки
@@ -17,11 +17,11 @@ namespace GlobalUIEvents
         public static UnityEvent<int> onBalanceChange = new UnityEvent<int>();
 
 
-        public static void SendSelectedEmptyBlock(TacticalPoint blockPosition) => onEmptyPositionSelected.Invoke(blockPosition);
+        public static void SendSelectedEmptyBlock(short pointIndex) => onEmptyPositionSelected.Invoke(pointIndex);
 
         public static void SendDeselectBlock() => onDeselectPosition.Invoke();
 
-        public static void SendSelectedOccupiedBlock(TacticalPoint blockPosition) => onOccupiedPositionSelect.Invoke(blockPosition);
+        public static void SendSelectedOccupiedBlock(short pointIndex) => onOccupiedPositionSelect.Invoke(pointIndex);
 
         public static void SendButtonClick() => onButtonClick.Invoke();
 
