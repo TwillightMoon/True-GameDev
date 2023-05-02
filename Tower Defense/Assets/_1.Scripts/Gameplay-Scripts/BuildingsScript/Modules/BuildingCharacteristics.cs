@@ -1,9 +1,11 @@
 ﻿using ConfigClasses.BuildingConfig;
+using ModuleClass;
+using System;
 using UnityEngine;
 
 namespace Buildings.Modules
 {
-    public class BuildingCharacteristics : MonoBehaviour, IModule
+    public class BuildingCharacteristics : Module
     {
         private Building _parent;
 
@@ -12,24 +14,20 @@ namespace Buildings.Modules
         [SerializeField] private BuildingsConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
 
 
-        private void Awake()
+        private new void Awake()
         {
-            _parent = (Building)FindParentHub();
+            base.Awake();
             SortLevels();
         }
         private void Start()
         {
+
+            _parent = ClassConverter<Building>.Convert(m_moduleParent);
             _parent.SetNewCharacteristics(_characteristicsOfLevels[0]);
         }
 
-        private void OnEnable()
-        {
-            _parent.AddModule(this);
-        }
-        private void OnDisable()
-        {
-            _parent.RemoveModule(this);
-        }
+        private void OnEnable() => _parent.AddModule(this);
+        private void OnDisable() => _parent.RemoveModule(this);
 
         /**
          * Метод получения возможного следующего уровня постройки.
@@ -73,13 +71,6 @@ namespace Buildings.Modules
             }
 
             Debug.Log("Levels was sorted");
-        }
-
-        public IModuleHub FindParentHub() => transform.GetComponentInParent<IModuleHub>();
-
-        public void SetSpecifications(BuildingsConfig specifications)
-        {
-            return;
         }
     }
 }

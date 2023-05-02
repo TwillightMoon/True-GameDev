@@ -1,5 +1,6 @@
 using Buildings.TowerStates;
 using ConfigClasses.BuildingConfig;
+using ModuleClass;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,7 +27,7 @@ namespace Buildings
         protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
 
         [Header("Модули")]
-        private LinkedList<IModule> modules = new LinkedList<IModule>();
+        private LinkedList<Module> modules = new LinkedList<Module>();
 
         [Header("Характеристика постройки")]
         protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
@@ -67,9 +68,9 @@ namespace Buildings
             else
                 Debug.LogError("SpriteRenderer не установлен!");
 
-            foreach (IModule item in modules)
+            foreach (Module item in modules)
             {
-                item.SetSpecifications(buildingsConfig);
+                item.UpdateData(buildingsConfig);
             }
         }
 
@@ -118,12 +119,12 @@ namespace Buildings
             onDeselect.Invoke();
         }
 
-        public void AddModule(IModule module)
+        public void AddModule(Module module)
         {
             _ = modules.AddLast(module);
         }
 
-        public void RemoveModule(IModule module)
+        public void RemoveModule(Module module)
         {
             _ = modules.Remove(module);
         }

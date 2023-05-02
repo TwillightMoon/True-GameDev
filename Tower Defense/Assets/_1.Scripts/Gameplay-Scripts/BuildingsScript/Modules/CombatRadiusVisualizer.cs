@@ -1,11 +1,12 @@
 using Buildings;
 using ConfigClasses.BuildingConfig;
+using ModuleClass;
 using System;
 
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class CombatRadiusVisualizer : MonoBehaviour, IModule
+public class CombatRadiusVisualizer : Module
 {
     [Header("Свойства")]
     [SerializeField] private int _segments;
@@ -19,8 +20,10 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
 
     private Building _parentBuilding;
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
+
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = _segments + 1;
 
@@ -33,7 +36,6 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
         SetParent();
 
         _parentBuilding.onDeselect.AddListener(DeactiveLine);
-
     }
 
     public void ActiveLine() => _lineRenderer.enabled = true;
@@ -45,7 +47,7 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
         _parentBuilding.onSelect.AddListener(ActiveLine);
         _lineRenderer.enabled = _parentBuilding.isSelect;
 
-        SetSpecifications(_parentBuilding.buildingsConfig);
+        UpdateData(_parentBuilding.buildingsConfig);
     }
     private void OnDisable()
     {
@@ -57,14 +59,7 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
 
     private void SetParent()
     {
-        try
-        {
-            _parentBuilding = (Building)FindParentHub();
-        }
-        catch (InvalidCastException e)
-        {
-            Debug.LogError("Произошла ошибка приведения типов: " + e.Message);
-        }
+        _parentBuilding = ClassConverter<Building>.Convert(m_moduleParent);
     }
 
     private void OnDrawGizmos()
@@ -93,17 +88,12 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
         _lineRenderer.SetPositions(points);
     }
 
-    public void SetSpecifications(BuildingsConfig specifications)
+    public override void UpdateData(ScriptableObject data)
     {
-        if (specifications == null) return;
+        if (data == null) return;
+        BuildingsConfig specifications = ClassConverter<BuildingsConfig>.Convert(data);
+        if (!specifications) return;
         radius = specifications.combatRadius;
         SetLine();
-    }
-
-    public IModuleHub FindParentHub()
-    {
-        IModuleHub moduleHub = transform.GetComponentInParent<IModuleHub>();
-
-        return moduleHub;
     }
 }
