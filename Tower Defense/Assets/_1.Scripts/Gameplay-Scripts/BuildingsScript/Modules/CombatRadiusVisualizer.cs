@@ -1,5 +1,5 @@
 using Buildings;
-using ConfigClasses.BuildingConfig;
+using ConfigClasses.TowerConfig;
 using System;
 
 using UnityEngine;
@@ -93,7 +93,7 @@ public class CombatRadiusVisualizer : MonoBehaviour, IModule
         _lineRenderer.SetPositions(points);
     }
 
-    public void SetSpecifications(BuildingsConfig specifications)
+    public void SetSpecifications(TowerConfig specifications)
     {
         if (specifications == null) return;
         radius = specifications.combatRadius;

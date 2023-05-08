@@ -1,4 +1,4 @@
-﻿using ConfigClasses.BuildingConfig;
+﻿using ConfigClasses.TowerConfig;
 using UnityEngine;
 
 namespace Buildings.Modules
@@ -9,7 +9,7 @@ namespace Buildings.Modules
 
         [Header("Характеристика постройки на каждом уровне")]
         private int _currentLevelIndex = 0 /**< integer variable. Индекс текущего уровня постройки */;
-        [SerializeField] private BuildingsConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
+        [SerializeField] private TowerConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
 
 
         private void Awake()
@@ -36,7 +36,7 @@ namespace Buildings.Modules
          * @return Следующий доступный уровень или null.
          * @see SetNextLevel()
         */
-        public BuildingsConfig GetNextLevel()
+        public TowerConfig GetNextLevel()
         {
             int nextLevelIndex = _currentLevelIndex + 1;
 
@@ -44,7 +44,7 @@ namespace Buildings.Modules
 
             return _characteristicsOfLevels[nextLevelIndex];
         }
-        public BuildingsConfig GetCurrentLevel() => _characteristicsOfLevels[0];
+        public TowerConfig GetCurrentLevel() => _characteristicsOfLevels[0];
         /**
          * Метод улучшения характеристик башни, посредством увеличения её уровня.
          * @see SetNewCharacteristics()
@@ -63,7 +63,7 @@ namespace Buildings.Modules
         {
             for (int i = 1; i < _characteristicsOfLevels.Length; i++)
             {
-                BuildingsConfig cacheConfig = _characteristicsOfLevels[i];
+                TowerConfig cacheConfig = _characteristicsOfLevels[i];
 
                 int j = i - 1;
                 for (; j >= 0 && _characteristicsOfLevels[j].towerLevel > cacheConfig.towerLevel; j--)
@@ -77,7 +77,7 @@ namespace Buildings.Modules
 
         public IModuleHub FindParentHub() => transform.GetComponentInParent<IModuleHub>();
 
-        public void SetSpecifications(BuildingsConfig specifications)
+        public void SetSpecifications(TowerConfig specifications)
         {
             return;
         }

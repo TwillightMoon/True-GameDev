@@ -3,10 +3,10 @@ using DamageTypes;
 
 namespace ConfigClasses 
 {
-    namespace BuildingConfig
+    namespace TowerConfig
     {
         [CreateAssetMenu(fileName = "ExpandedTower", order = 3, menuName = "Gameplay/Towers/New ExpandedTower")]
-        public class ExpandedTower : BuildingsConfig
+        public class ExpandedTower : TowerConfig
         {
             [Header("Тип башни")]
             [SerializeField] private DamageType _thisTowerDamageType;

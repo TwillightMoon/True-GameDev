@@ -1,7 +1,7 @@
-﻿using ConfigClasses.BuildingConfig;
+﻿using ConfigClasses.TowerConfig;
 
 public interface IModule
 {
     IModuleHub FindParentHub();
-    void SetSpecifications(BuildingsConfig specifications);
+    void SetSpecifications(TowerConfig specifications);
 }

@@ -1,6 +1,6 @@
 using Buildings;
 using Buildings.Modules;
-using ConfigClasses.BuildingConfig;
+using ConfigClasses.TowerConfig;
 using UnityEngine;
 
 namespace Managers
@@ -69,7 +69,7 @@ namespace Managers
          */
         public void SellBuild(TacticalPoint placeForBuild)
         {
-            BuildingsConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
+            TowerConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
             int buildingSellCost = buildingConfig.sellCost;
 
             WalletScript.instance.AddToCurrentBalace(buildingSellCost);

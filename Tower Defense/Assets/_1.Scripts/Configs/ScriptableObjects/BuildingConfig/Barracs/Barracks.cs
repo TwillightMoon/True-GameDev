@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace ConfigClasses
 {
-    namespace BuildingConfig
+    namespace BarrackConfig
     {
         [CreateAssetMenu(fileName = "Barracs", order = 4, menuName = "Gameplay/Towers/New Barracks")]
-        public class Barracks : BuildingsConfig
+        public class Barracks : BuildingConfig
         {
             [Header("Характеристики юнитов")]
             [SerializeField] [Tooltip("Количество юнитов одновременно")] private byte _unitCount;

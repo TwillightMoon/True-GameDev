@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Unit.EnemyScrips;
-using ConfigClasses.BuildingConfig;
+using ConfigClasses.TowerConfig;
 using System;
 
 namespace Buildings
@@ -90,7 +90,7 @@ namespace Buildings
             }
         }
 
-        public void SetSpecifications(BuildingsConfig specifications)
+        public void SetSpecifications(TowerConfig specifications)
         {
             if (specifications.combatRadius < 0) return;
 

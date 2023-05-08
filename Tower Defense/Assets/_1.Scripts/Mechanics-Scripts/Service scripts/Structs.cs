@@ -3,10 +3,10 @@ using System;
 namespace Structs
 {
     [Serializable]
-    public struct Damage
+    public struct MinMax
     {
-        public int minDamage;
-        public int maxDamage;
+        public int min;
+        public int max;
     }
 }
 

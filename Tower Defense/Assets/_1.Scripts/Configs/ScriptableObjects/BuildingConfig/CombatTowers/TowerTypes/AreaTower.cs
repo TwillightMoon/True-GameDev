@@ -3,10 +3,10 @@ using DamageTypes;
 
 namespace ConfigClasses
 {
-    namespace BuildingConfig
+    namespace TowerConfig
     {
         [CreateAssetMenu(fileName = "AreaTower", order = 2, menuName = "Gameplay/Towers/New AreaTower")]
-        public class AreaTower : BuildingsConfig
+        public class AreaTower : TowerConfig
         {
             [SerializeField] private float _splashRadius;
 
