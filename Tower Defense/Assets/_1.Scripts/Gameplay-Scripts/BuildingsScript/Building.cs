@@ -1,5 +1,6 @@
 using Buildings.TowerStates;
-using ConfigClasses.TowerConfig;
+using ConfigClasses.BuildingConfig;
+using ModuleClass;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,10 +27,10 @@ namespace Buildings
         protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
 
         [Header("Модули")]
-        private LinkedList<IModule> modules = new LinkedList<IModule>();
+        private LinkedList<Module> modules = new LinkedList<Module>();
 
         [Header("Характеристика постройки")]
-        protected TowerConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
+        protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
 
         [Header("Состояния постройки")]
         [SerializeField] protected TowerState[] towerStates; /**< TowerState[] variable. Массив состояний построки. */
@@ -39,7 +40,7 @@ namespace Buildings
         private bool _isSelect = false;
 
 
-        public TowerConfig buildingsConfig => _buildingCharacteristic;
+        public BuildingsConfig buildingsConfig => _buildingCharacteristic;
 
         public bool isSelect { get => this._isSelect; }
 
@@ -58,7 +59,7 @@ namespace Buildings
          * Метод, обновляющий характеристики постройки. Cледует после SetNewLevel().
          * @see SetNewLevel()
         */
-        public void SetNewCharacteristics(TowerConfig buildingsConfig)
+        public void SetNewCharacteristics(BuildingsConfig buildingsConfig)
         {
             this._buildingCharacteristic = buildingsConfig;
 
@@ -67,9 +68,9 @@ namespace Buildings
             else
                 Debug.LogError("SpriteRenderer не установлен!");
 
-            foreach (IModule item in modules)
+            foreach (Module item in modules)
             {
-                item.SetSpecifications(buildingsConfig);
+                item.UpdateData(buildingsConfig);
             }
         }
 
@@ -118,12 +119,12 @@ namespace Buildings
             onDeselect.Invoke();
         }
 
-        public void AddModule(IModule module)
+        public void AddModule(Module module)
         {
             _ = modules.AddLast(module);
         }
 
-        public void RemoveModule(IModule module)
+        public void RemoveModule(Module module)
         {
             _ = modules.Remove(module);
         }

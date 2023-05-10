@@ -1,6 +1,11 @@
-﻿public interface IModuleHub
+﻿
+namespace ModuleClass
 {
-    void AddModule(IModule module);
-    void RemoveModule(IModule module);
+    public interface IModuleHub
+    {
+        void AddModule(Module module);
+        void RemoveModule(Module module);
+    }
 }
+
 

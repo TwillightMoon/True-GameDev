@@ -1,42 +1,40 @@
-﻿using ConfigClasses.TowerConfig;
+﻿using ConfigClasses.BuildingConfig;
+using ModuleClass;
+using System;
 using UnityEngine;
 
 namespace Buildings.Modules
 {
-    public class BuildingCharacteristics : MonoBehaviour, IModule
+    public class BuildingCharacteristics : Module
     {
         private Building _parent;
 
         [Header("Характеристика постройки на каждом уровне")]
         private int _currentLevelIndex = 0 /**< integer variable. Индекс текущего уровня постройки */;
-        [SerializeField] private TowerConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
+        [SerializeField] private BuildingsConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
 
 
-        private void Awake()
+        private new void Awake()
         {
-            _parent = (Building)FindParentHub();
+            base.Awake();
             SortLevels();
         }
         private void Start()
         {
+
+            _parent = ClassConverter<Building>.Convert(m_moduleParent);
             _parent.SetNewCharacteristics(_characteristicsOfLevels[0]);
         }
 
-        private void OnEnable()
-        {
-            _parent.AddModule(this);
-        }
-        private void OnDisable()
-        {
-            _parent.RemoveModule(this);
-        }
+        private void OnEnable() => _parent.AddModule(this);
+        private void OnDisable() => _parent.RemoveModule(this);
 
         /**
          * Метод получения возможного следующего уровня постройки.
          * @return Следующий доступный уровень или null.
          * @see SetNextLevel()
         */
-        public TowerConfig GetNextLevel()
+        public BuildingsConfig GetNextLevel()
         {
             int nextLevelIndex = _currentLevelIndex + 1;
 
@@ -44,7 +42,7 @@ namespace Buildings.Modules
 
             return _characteristicsOfLevels[nextLevelIndex];
         }
-        public TowerConfig GetCurrentLevel() => _characteristicsOfLevels[0];
+        public BuildingsConfig GetCurrentLevel() => _characteristicsOfLevels[0];
         /**
          * Метод улучшения характеристик башни, посредством увеличения её уровня.
          * @see SetNewCharacteristics()
@@ -63,7 +61,7 @@ namespace Buildings.Modules
         {
             for (int i = 1; i < _characteristicsOfLevels.Length; i++)
             {
-                TowerConfig cacheConfig = _characteristicsOfLevels[i];
+                BuildingsConfig cacheConfig = _characteristicsOfLevels[i];
 
                 int j = i - 1;
                 for (; j >= 0 && _characteristicsOfLevels[j].towerLevel > cacheConfig.towerLevel; j--)
@@ -73,13 +71,6 @@ namespace Buildings.Modules
             }
 
             Debug.Log("Levels was sorted");
-        }
-
-        public IModuleHub FindParentHub() => transform.GetComponentInParent<IModuleHub>();
-
-        public void SetSpecifications(TowerConfig specifications)
-        {
-            return;
         }
     }
 }

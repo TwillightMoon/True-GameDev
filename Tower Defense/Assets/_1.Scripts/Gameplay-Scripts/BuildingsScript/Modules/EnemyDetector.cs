@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Unit.EnemyScrips;
-using ConfigClasses.TowerConfig;
+using ConfigClasses.BuildingConfig;
 using System;
+using ModuleClass;
 
 namespace Buildings
 {
     [RequireComponent(typeof(CircleCollider2D))]
-    public class EnemyDetector : MonoBehaviour, IModule
+    public class EnemyDetector : Module
     {
         public UnityEvent onEnemyCrossesArea = new UnityEvent();
 
@@ -19,8 +20,10 @@ namespace Buildings
 
         private bool isActive = false;
 
-        private void Awake()
+        private new void Awake()
         {
+            base.Awake();
+
             _enemyList = new LinkedList<Enemy>();
             _circleCollider2d = GetComponent<CircleCollider2D>();
             _circleCollider2d.isTrigger = true;
@@ -30,15 +33,7 @@ namespace Buildings
 
         private void SetParent()
         {
-            try
-            {
-                _parentBuilding = (Building)FindParentHub();
-            }
-            catch (InvalidCastException e)
-            {
-                Debug.LogError("Произошла ошибка приведения типов: " + e.Message);
-
-            }
+            _parentBuilding = ClassConverter<Building>.Convert(m_moduleParent);
         }
 
         private void OnEnable()
@@ -90,14 +85,17 @@ namespace Buildings
             }
         }
 
-        public void SetSpecifications(TowerConfig specifications)
+        override public void UpdateData(ScriptableObject data)
         {
+            if (data == null) return;
+            BuildingsConfig specifications = ClassConverter<BuildingsConfig>.Convert(data);
+            if (!specifications) return;
+
             if (specifications.combatRadius < 0) return;
 
             _circleCollider2d.radius = specifications.combatRadius;
         }
 
-        public IModuleHub FindParentHub() => transform.GetComponentInParent<IModuleHub>();
     }
 
 }
