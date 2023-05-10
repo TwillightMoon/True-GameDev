@@ -8,7 +8,7 @@ namespace Buildings
      */
     public class CombatTower : Building
     {
-        private void Start()
+        private void Awake()
         {
 
             Init();

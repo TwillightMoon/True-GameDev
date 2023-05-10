@@ -8,9 +8,9 @@ namespace ModuleClass
     {
         protected IModuleHub m_moduleParent;
 
-        protected void Awake()
+        protected void Init()
         {
-            Debug.Log("sd");
+            Debug.Log("Проверка");
             m_moduleParent = FindParentHub();
         }
 

@@ -14,13 +14,10 @@ namespace Buildings.Modules
         [SerializeField] private BuildingConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
 
 
-        private new void Awake()
+        private void Awake()
         {
-            base.Awake();
+            base.Init();
             SortLevels();
-        }
-        private void Start()
-        {
 
             _parent = ClassConverter<Building>.Convert(m_moduleParent);
             _parent.SetNewCharacteristics(_characteristicsOfLevels[0]);

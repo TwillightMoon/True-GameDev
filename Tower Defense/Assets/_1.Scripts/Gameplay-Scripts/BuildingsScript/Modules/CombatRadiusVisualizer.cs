@@ -20,9 +20,9 @@ public class CombatRadiusVisualizer : Module
 
     private Building _parentBuilding;
 
-    private new void Awake()
+    private void Awake()
     {
-        base.Awake();
+        base.Init();
 
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = _segments + 1;

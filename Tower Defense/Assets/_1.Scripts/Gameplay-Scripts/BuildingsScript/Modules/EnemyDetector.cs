@@ -22,7 +22,7 @@ namespace Buildings
 
         private new void Awake()
         {
-            base.Awake();
+            base.Init();
 
             _enemyList = new LinkedList<Enemy>();
             _circleCollider2d = GetComponent<CircleCollider2D>();
