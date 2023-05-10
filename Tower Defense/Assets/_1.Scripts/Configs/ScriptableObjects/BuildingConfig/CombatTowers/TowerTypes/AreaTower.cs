@@ -3,7 +3,7 @@ using DamageTypes;
 
 namespace ConfigClasses
 {
-    namespace TowerConfig
+    namespace ConfigBuildings
     {
         [CreateAssetMenu(fileName = "AreaTower", order = 2, menuName = "Gameplay/Towers/New AreaTower")]
         public class AreaTower : TowerConfig

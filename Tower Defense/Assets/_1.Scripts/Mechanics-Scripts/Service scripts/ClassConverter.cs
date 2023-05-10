@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using Object = UnityEngine.Object;
-using Buildings;
-using ModuleClass;
 
 public class ClassConverter<ToConvert> where ToConvert : Object
 {

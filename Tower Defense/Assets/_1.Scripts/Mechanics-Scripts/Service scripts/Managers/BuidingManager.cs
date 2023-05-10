@@ -1,6 +1,6 @@
 using Buildings;
 using Buildings.Modules;
-using ConfigClasses.TowerConfig;
+using ConfigClasses.ConfigBuildings;
 using UnityEngine;
 
 namespace Managers

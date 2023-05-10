@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Unit.EnemyScrips;
-using ConfigClasses.BuildingConfig;
+using ConfigClasses.ConfigBuildings;
 using System;
 using ModuleClass;
 
@@ -88,7 +88,7 @@ namespace Buildings
         override public void UpdateData(ScriptableObject data)
         {
             if (data == null) return;
-            BuildingsConfig specifications = ClassConverter<BuildingsConfig>.Convert(data);
+            TowerConfig specifications = ClassConverter<TowerConfig>.Convert(data);
             if (!specifications) return;
 
             if (specifications.combatRadius < 0) return;

@@ -1,5 +1,5 @@
 using Buildings;
-using ConfigClasses.BuildingConfig;
+using ConfigClasses.ConfigBuildings;
 using ModuleClass;
 using System;
 
@@ -91,7 +91,7 @@ public class CombatRadiusVisualizer : Module
     public override void UpdateData(ScriptableObject data)
     {
         if (data == null) return;
-        BuildingsConfig specifications = ClassConverter<BuildingsConfig>.Convert(data);
+        TowerConfig specifications = ClassConverter<TowerConfig>.Convert(data);
         if (!specifications) return;
         radius = specifications.combatRadius;
         SetLine();

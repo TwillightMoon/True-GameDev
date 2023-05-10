@@ -1,4 +1,4 @@
-﻿using ConfigClasses.BuildingConfig;
+﻿using ConfigClasses.ConfigBuildings;
 using ModuleClass;
 using System;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace Buildings.Modules
 
         [Header("Характеристика постройки на каждом уровне")]
         private int _currentLevelIndex = 0 /**< integer variable. Индекс текущего уровня постройки */;
-        [SerializeField] private BuildingsConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
+        [SerializeField] private BuildingConfig[] _characteristicsOfLevels /**< integer[] variable. Массив уровней построки. */;
 
 
         private new void Awake()
@@ -34,7 +34,7 @@ namespace Buildings.Modules
          * @return Следующий доступный уровень или null.
          * @see SetNextLevel()
         */
-        public BuildingsConfig GetNextLevel()
+        public BuildingConfig GetNextLevel()
         {
             int nextLevelIndex = _currentLevelIndex + 1;
 
@@ -42,7 +42,7 @@ namespace Buildings.Modules
 
             return _characteristicsOfLevels[nextLevelIndex];
         }
-        public BuildingsConfig GetCurrentLevel() => _characteristicsOfLevels[0];
+        public BuildingConfig GetCurrentLevel() => _characteristicsOfLevels[0];
         /**
          * Метод улучшения характеристик башни, посредством увеличения её уровня.
          * @see SetNewCharacteristics()
@@ -61,7 +61,7 @@ namespace Buildings.Modules
         {
             for (int i = 1; i < _characteristicsOfLevels.Length; i++)
             {
-                BuildingsConfig cacheConfig = _characteristicsOfLevels[i];
+                BuildingConfig cacheConfig = _characteristicsOfLevels[i];
 
                 int j = i - 1;
                 for (; j >= 0 && _characteristicsOfLevels[j].towerLevel > cacheConfig.towerLevel; j--)

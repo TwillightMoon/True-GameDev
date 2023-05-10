@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ConfigClasses
 {
-    namespace BarrackConfig
+    namespace ConfigBuildings
     {
         [CreateAssetMenu(fileName = "Barracs", order = 4, menuName = "Gameplay/Towers/New Barracks")]
         public class Barracks : BuildingConfig

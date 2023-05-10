@@ -1,5 +1,5 @@
 using Buildings.TowerStates;
-using ConfigClasses.BuildingConfig;
+using ConfigClasses.ConfigBuildings;
 using ModuleClass;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +30,7 @@ namespace Buildings
         private LinkedList<Module> modules = new LinkedList<Module>();
 
         [Header("Характеристика постройки")]
-        protected BuildingsConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
+        protected TowerConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
 
         [Header("Состояния постройки")]
         [SerializeField] protected TowerState[] towerStates; /**< TowerState[] variable. Массив состояний построки. */
@@ -40,7 +40,7 @@ namespace Buildings
         private bool _isSelect = false;
 
 
-        public BuildingsConfig buildingsConfig => _buildingCharacteristic;
+        public TowerConfig buildingsConfig => _buildingCharacteristic;
 
         public bool isSelect { get => this._isSelect; }
 
@@ -59,9 +59,9 @@ namespace Buildings
          * Метод, обновляющий характеристики постройки. Cледует после SetNewLevel().
          * @see SetNewLevel()
         */
-        public void SetNewCharacteristics(BuildingsConfig buildingsConfig)
+        public void SetNewCharacteristics(BuildingConfig buildingsConfig)
         {
-            this._buildingCharacteristic = buildingsConfig;
+            this._buildingCharacteristic = ClassConverter<TowerConfig>.Convert(buildingsConfig);
 
             if (_spriteRenderer)
                 _spriteRenderer.sprite = _buildingCharacteristic.towerSprite;
