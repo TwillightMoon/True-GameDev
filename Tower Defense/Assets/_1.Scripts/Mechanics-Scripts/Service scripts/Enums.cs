@@ -7,5 +7,4 @@ namespace StatsEnums
         Third,
         Special
     }
-
 }
