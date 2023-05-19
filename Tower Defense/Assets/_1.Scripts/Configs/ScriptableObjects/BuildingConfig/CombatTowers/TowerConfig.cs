@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 using DamageTypes;
 using Structs;
@@ -42,7 +42,6 @@ namespace ConfigClasses
              * Геттер, возвращающий float переменную радиуса действия _combatRadius
              */
             public float combatRadius => _combatRadius;
-
 
             /**
              * Метод, возвращающий объект перечисления DamageType m_damageType

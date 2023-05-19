@@ -20,7 +20,7 @@ namespace Buildings
 
         private bool isActive = false;
 
-        private new void Awake()
+        private void Awake()
         {
             base.Init();
 
