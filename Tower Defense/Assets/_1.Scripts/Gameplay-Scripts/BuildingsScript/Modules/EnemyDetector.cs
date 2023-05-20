@@ -58,9 +58,10 @@ namespace Buildings
         {
             if(!isActive) return;
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            Debug.Log("hit");
             if (enemy)
             {
+                Debug.Log("hit " + collision.gameObject);
+
                 _enemyList.AddLast(enemy);
                 onEnemyCrossesArea.Invoke();
             }

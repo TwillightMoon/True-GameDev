@@ -10,7 +10,6 @@ namespace ModuleClass
 
         protected void Init()
         {
-            Debug.Log("Проверка");
             m_moduleParent = FindParentHub();
         }
 

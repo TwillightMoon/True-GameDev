@@ -10,7 +10,7 @@ public class CombatRadiusVisualizer : Module
 {
     [Header("Свойства")]
     [SerializeField] private int _segments;
-    [SerializeField] [Min(0.01F)] private float _yRadiusCoeff;
+    [SerializeField][Range(0.01F, 1)] private float _yRadiusCoeff;
 
     [SerializeField] private float _lineWidth;
     [SerializeField] private Color _lineColor;
@@ -93,7 +93,6 @@ public class CombatRadiusVisualizer : Module
         if (data == null) return;
         TowerConfig specifications = ClassConverter<TowerConfig>.Convert(data);
         if (!specifications) return;
-        Debug.Log("Радиус");
         radius = specifications.combatRadius;
         SetLine();
     }
