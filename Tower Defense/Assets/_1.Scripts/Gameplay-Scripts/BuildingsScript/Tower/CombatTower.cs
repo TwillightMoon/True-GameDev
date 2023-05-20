@@ -10,7 +10,6 @@ namespace Buildings
     {
         private void Awake()
         {
-
             Init();
 
             if (towerStates.Length != 0)

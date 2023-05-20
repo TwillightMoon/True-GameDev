@@ -29,14 +29,14 @@ namespace Managers
 
         private void BuildWithoutCost(TacticalPoint placeForBuild, Building buildPrefab)
         {
-            placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
+            placeForBuild.SetBuilding(buildPrefab);
         }
         private void BuildWithCost(TacticalPoint placeForBuild, Building buildPrefab, int buildingCost)
         {
             if (CheckBalance(buildingCost))
             {
                 WalletScript.instance.SubFromCurrentBalance(buildingCost);
-                placeForBuild.SetBuilding(Instantiate(buildPrefab, parentObjForBuildings));
+                placeForBuild.SetBuilding(buildPrefab);
             }
             else
                 Debug.Log("Недостаточно средсв!");

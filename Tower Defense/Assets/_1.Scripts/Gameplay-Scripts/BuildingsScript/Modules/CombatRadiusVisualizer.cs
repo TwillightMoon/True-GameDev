@@ -93,6 +93,7 @@ public class CombatRadiusVisualizer : Module
         if (data == null) return;
         TowerConfig specifications = ClassConverter<TowerConfig>.Convert(data);
         if (!specifications) return;
+        Debug.Log("Радиус");
         radius = specifications.combatRadius;
         SetLine();
     }
