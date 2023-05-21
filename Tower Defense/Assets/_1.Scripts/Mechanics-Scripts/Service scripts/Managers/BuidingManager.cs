@@ -69,7 +69,7 @@ namespace Managers
          */
         public void SellBuild(TacticalPoint placeForBuild)
         {
-            TowerConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
+            BuildingConfig buildingConfig = placeForBuild.GetBuilding().buildingsConfig;
             int buildingSellCost = buildingConfig.sellCost;
 
             WalletScript.instance.AddToCurrentBalace(buildingSellCost);

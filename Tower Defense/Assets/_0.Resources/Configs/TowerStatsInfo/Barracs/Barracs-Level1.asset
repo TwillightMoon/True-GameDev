@@ -13,13 +13,9 @@ MonoBehaviour:
   m_Name: Barracs-Level1
   m_EditorClassIdentifier: 
   _towerLevel: 0
-  _towerSprite: {fileID: 21300000, guid: c6655ab6f111dec42803a62d2ed52183, type: 3}
+  _sprite: {fileID: 21300000, guid: c6655ab6f111dec42803a62d2ed52183, type: 3}
+  _activeRadius: 2
   _levelCost: 140
   _sellCost: 98
-  _damage:
-    minDamage: 0
-    maxDamage: 0
-  _fireRatePerSecond: 0
-  _combatRadius: 0
-  _unitCount: 0
-  _respawnTime: 0
+  _unitCount: 3
+  _respawnTime: 2

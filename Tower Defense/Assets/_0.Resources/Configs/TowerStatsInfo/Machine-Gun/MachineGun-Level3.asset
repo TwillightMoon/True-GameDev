@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: MachineGun-Level3
   m_EditorClassIdentifier: 
   _towerLevel: 2
-  _towerSprite: {fileID: 21300000, guid: d73fa68d12e4f374691d42c04ddd8bab, type: 3}
+  _sprite: {fileID: 21300000, guid: d73fa68d12e4f374691d42c04ddd8bab, type: 3}
+  _activeRadius: 2.5
   _levelCost: 240
   _sellCost: 168
+  m_damageType: 0
   _damage:
-    minDamage: 5
-    maxDamage: 8
-  _fireRatePerSecond: 0.2
-  _combatRadius: 4.7
+    min: 0
+    max: 0
+  _attackRatePerSecond: 0

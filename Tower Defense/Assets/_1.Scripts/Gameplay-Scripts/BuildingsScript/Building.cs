@@ -30,7 +30,7 @@ namespace Buildings
         private LinkedList<Module> modules = new LinkedList<Module>();
 
         [Header("Характеристика постройки")]
-        protected TowerConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
+        protected BuildingConfig _buildingCharacteristic /**< BuildingsConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
 
         [Header("Состояния постройки")]
         [SerializeField] protected TowerState[] towerStates; /**< TowerState[] variable. Массив состояний построки. */
@@ -40,7 +40,7 @@ namespace Buildings
         private bool _isSelect = false;
 
 
-        public TowerConfig buildingsConfig => _buildingCharacteristic;
+        public BuildingConfig buildingsConfig => _buildingCharacteristic;
 
         public bool isSelect { get => this._isSelect; }
 
@@ -65,7 +65,8 @@ namespace Buildings
 
         private void Update()
         {
-            currentState.UpdateRun();
+            if(currentState)
+                currentState.UpdateRun();
         }
 
 
@@ -75,10 +76,10 @@ namespace Buildings
         */
         public void SetNewCharacteristics(BuildingConfig buildingsConfig)
         {
-            this._buildingCharacteristic = ClassConverter<TowerConfig>.Convert(buildingsConfig);
+            _buildingCharacteristic = buildingsConfig;
 
             if (_spriteRenderer)
-                _spriteRenderer.sprite = _buildingCharacteristic.towerSprite;
+                _spriteRenderer.sprite = _buildingCharacteristic.sprite;
             else
                 Debug.LogError("SpriteRenderer не установлен!");
 
