@@ -19,18 +19,6 @@ namespace ModuleClass
 
         public virtual void UpdateData(EntityConfig data) {return;}
 
-
-        private void OnConnectedToServer()
-        {
-                try
-                {
-                    m_moduleParent = FindParentHub();
-                }
-                catch (InvalidCastException e)
-                {
-                    Debug.LogError("Произошла ошибка приведения типов: " + e.Message);
-                }
-        }
         private IModuleHub FindParentHub() => transform.GetComponentInParent<IModuleHub>();
     }
 }

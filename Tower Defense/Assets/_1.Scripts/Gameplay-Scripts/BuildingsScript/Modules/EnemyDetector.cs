@@ -1,7 +1,7 @@
 using ConfigClasses;
 using ModuleClass;
 using System.Collections.Generic;
-using Unit.EnemyScrips;
+using Units.EnemyScrips;
 using UnityEngine;
 using UnityEngine.Events;
 
