@@ -1,10 +1,9 @@
+using ConfigClasses;
+using ModuleClass;
 using System.Collections.Generic;
+using Unit.EnemyScrips;
 using UnityEngine;
 using UnityEngine.Events;
-using Unit.EnemyScrips;
-using ConfigClasses.ConfigBuildings;
-using System;
-using ModuleClass;
 
 namespace Buildings
 {
@@ -50,19 +49,19 @@ namespace Buildings
             _parentBuilding.RemoveModule(this);
         }
 
-        public Enemy GetNextEnemy() => ((_enemyList.Count <= 0) ? null : _enemyList.First.Value);
-        public bool IsHeadLink(Enemy enemy) => ((_enemyList.Count <= 0) ? false : _enemyList.First.Value == enemy);
- 
+        public Enemy GetNextEnemy() => (_enemyList.Count <= 0) ? null : _enemyList.First.Value;
+        public bool IsHeadLink(Enemy enemy) => (_enemyList.Count <= 0) ? false : _enemyList.First.Value == enemy;
+
         //Отслеживание противников в радиусе
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(!isActive) return;
+            if (!isActive) return;
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             if (enemy)
             {
                 Debug.Log("hit " + collision.gameObject);
 
-                _enemyList.AddLast(enemy);
+                _ = _enemyList.AddLast(enemy);
                 onEnemyCrossesArea.Invoke();
             }
         }
@@ -86,17 +85,11 @@ namespace Buildings
             }
         }
 
-        override public void UpdateData(ScriptableObject data)
+        public override void UpdateData(EntityConfig data)
         {
-            if (data == null) return;
-            TowerConfig specifications = ClassConverter<TowerConfig>.Convert(data);
-            if (!specifications) return;
+            if (data == null || data.combatRadius < 0) return;
 
-            if (specifications.combatRadius < 0) return;
-
-            _circleCollider2d.radius = specifications.combatRadius;
+            _circleCollider2d.radius = data.combatRadius;
         }
-
     }
-
 }

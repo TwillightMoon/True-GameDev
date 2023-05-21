@@ -12,7 +12,7 @@ namespace Buildings
             private EnemyDetector _enemyDetector;
             private Enemy _currentEnemy /**< Enemy variable. Переменная, хранящего текущую цель для атаки. */;
 
-            public override void Init(CombatTower parentTower)
+            public override void Init(Building parentTower)
             {
                 base.Init(parentTower);
 

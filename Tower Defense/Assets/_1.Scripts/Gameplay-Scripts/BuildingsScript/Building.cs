@@ -15,7 +15,7 @@ namespace Buildings
     */
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public abstract class Building :
+    public class Building :
         MonoBehaviour, IStateChange, IInteractable, IModuleHub
     {
         //События
@@ -47,13 +47,27 @@ namespace Buildings
         /**
         * Метод инициализации объекта. Вызывается из конкретной постройки в методе Start().
         */
-        protected void Init()
+        protected void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
             _rigidbody2D.bodyType = RigidbodyType2D.Static;
+
+            if (towerStates.Length != 0)
+            {
+                for (int i = 0; i < towerStates.Length; i++)
+                    towerStates[i].Init(this);
+            }
+
+            ChangeState<TowerChill>();
         }
+
+        private void Update()
+        {
+            currentState.UpdateRun();
+        }
+
 
         /**
          * Метод, обновляющий характеристики постройки. Cледует после SetNewLevel().

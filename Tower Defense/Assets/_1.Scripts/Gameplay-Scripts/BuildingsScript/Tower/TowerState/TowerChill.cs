@@ -9,7 +9,7 @@ namespace Buildings
         {
             private EnemyDetector _enemyDetector;
 
-            public override void Init(CombatTower parentTower)
+            public override void Init(Building parentTower)
             {
                 base.Init(parentTower);
                 _enemyDetector = parentTower.GetComponentInChildren<EnemyDetector>();

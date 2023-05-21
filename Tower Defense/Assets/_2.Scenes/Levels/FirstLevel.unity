@@ -329,6 +329,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 621989772329505174, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6849414746104407839, guid: e5918ca7f14d473418b11ae90ce40038, type: 3}
+    - target: {fileID: 621989772329505174, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Buildings.Building, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 621989773282213568, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1301051155699806983, guid: ae06cae26cd0a5c409c8a5f1b022c16c, type: 3}
+    - target: {fileID: 621989773282213568, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Buildings.Building, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 621989773501680218, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 182128028050441006, guid: 51d2fd1ac5637624aacd316acadb67a2, type: 3}
+    - target: {fileID: 621989773501680218, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Buildings.Building, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1460053956937148463, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_text
       value: "\u0422\u0435\u043A\u0443\u0449\u0438\u0439 \u0431\u0430\u043B\u0430\u043D\u0441:"
