@@ -1,5 +1,5 @@
 using UnityEngine;
-using DamageTypes;
+using StatsEnums.DamageTypes;
 
 namespace ConfigClasses
 {
