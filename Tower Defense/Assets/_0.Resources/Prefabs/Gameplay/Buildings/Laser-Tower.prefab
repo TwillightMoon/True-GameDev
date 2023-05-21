@@ -159,7 +159,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 3478228131289787067}
   - component: {fileID: 3478228131289787068}
   - component: {fileID: 3478228131289787071}
-  - component: {fileID: 3478228131289787069}
+  - component: {fileID: 1301051155699806983}
   m_Layer: 3
   m_Name: Laser-Tower
   m_TagString: Untagged
@@ -369,7 +369,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3478228131289787069
+--- !u!114 &1301051155699806983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3478228131289787066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66309b7dd78852146b1dc7de8a4684e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f7dfbbdd998fe7b45a7af9206f700df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onSelect:

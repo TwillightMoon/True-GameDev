@@ -1,5 +1,5 @@
 using Buildings;
-using ConfigClasses.ConfigBuildings;
+using ConfigClasses;
 using ModuleClass;
 using System;
 
@@ -10,7 +10,7 @@ public class CombatRadiusVisualizer : Module
 {
     [Header("Свойства")]
     [SerializeField] private int _segments;
-    [SerializeField] [Min(0.01F)] private float _yRadiusCoeff;
+    [SerializeField][Range(0.01F, 1)] private float _yRadiusCoeff;
 
     [SerializeField] private float _lineWidth;
     [SerializeField] private Color _lineColor;
@@ -88,12 +88,11 @@ public class CombatRadiusVisualizer : Module
         _lineRenderer.SetPositions(points);
     }
 
-    public override void UpdateData(ScriptableObject data)
+    public override void UpdateData(EntityConfig data)
     {
-        if (data == null) return;
-        TowerConfig specifications = ClassConverter<TowerConfig>.Convert(data);
-        if (!specifications) return;
-        radius = specifications.combatRadius;
+        if (data == null || data.combatRadius < 0) return;
+
+        radius = data.combatRadius;
         SetLine();
     }
 }

@@ -1,4 +1,4 @@
-using Buildings;
+using ConfigClasses;
 using System;
 using UnityEngine;
 
@@ -10,7 +10,6 @@ namespace ModuleClass
 
         protected void Init()
         {
-            Debug.Log("Проверка");
             m_moduleParent = FindParentHub();
         }
 
@@ -18,7 +17,7 @@ namespace ModuleClass
         public virtual void RunFixedUpdate() { return; }
         public virtual void RunLateUpdate() { return; }
 
-        public virtual void UpdateData(ScriptableObject data) {return;}
+        public virtual void UpdateData(EntityConfig data) {return;}
 
 
         private void OnConnectedToServer()

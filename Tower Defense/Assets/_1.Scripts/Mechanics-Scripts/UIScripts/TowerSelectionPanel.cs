@@ -33,7 +33,7 @@ public class TowerSelectionPanel : MonoBehaviour
         }
     }
 
-    public void CreateTower(CombatTower tower)
+    public void CreateTower(Building tower)
     {
         BuildingManager.instance.Build(_currentTacticalPoint, tower);
     }

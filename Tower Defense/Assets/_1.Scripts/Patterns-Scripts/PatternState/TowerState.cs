@@ -8,12 +8,12 @@ namespace Buildings
         /** –одительский класс дл€ всех состо€ний башен. */
         public abstract class TowerState : State
         {
-            protected CombatTower parentTower; /**< CombatTower variable. –одительска€ башн€, к которой относитс€ состо€ние. */
+            protected Building parentTower; /**< CombatTower variable. –одительска€ башн€, к которой относитс€ состо€ние. */
 
             /** ћетод инициализации состо€ни€.
              * @param parentTower. –одительска€ башн€.
              */
-            public virtual void Init(CombatTower parentTower)
+            public virtual void Init(Building parentTower)
             {
                 if (!this.parentTower)
                     this.parentTower = parentTower;
