@@ -1,13 +1,7 @@
-using System.Collections.Generic;
-
-using ConfigClasses;
 using ConfigClasses.UnitConfigs;
-
-using ModuleClass;
-
-using UnityEditor.Experimental.GraphView;
+using System.Collections.Generic;
+using Units.UnitStates;
 using UnityEngine;
-using UnityEngine.Events;
 
 /**Пространство имён, содержащее классы реализации игровых Юнитов */
 namespace Units
@@ -16,66 +10,58 @@ namespace Units
     /** Абстрактный класс, определяющий базовые методы для всех юнитов */
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public abstract class Unit : MonoBehaviour, IModuleHub, IInteractable, IStateChange
+    public abstract class Unit : Entity
     {
-        //События
-        [HideInInspector] public UnityEvent onSelect = new UnityEvent();
-        [HideInInspector] public UnityEvent onDeselect = new UnityEvent();
-
-        [Header("Компоненты")]
-        protected Rigidbody2D _rigidbody2D /**< Rigidbody2D variable. Компонент, отвечающий за физическую обработку. */;
-        protected SpriteRenderer _spriteRenderer /**< SpriteRenderer variable. Компонент, отвечающий за отображение графики объекта. */;
-
-        [Header("Модули")]
-        private LinkedList<Module> modules = new LinkedList<Module>();
 
         [Header("Характеристика юнита")]
         [SerializeField] protected UnitConfig _unitCharacteristics /**< UnitConfig variable. Компонент, хранящий основыне хар-ки постройки. */;
 
         [Header("Состояния юнита")]
-        [SerializeField] protected State[] unitStates; /**< TowerState[] variable. Массив состояний построки. */
-        protected State currentState /**< TowerState variable. Текущее состояние */;
+        [SerializeField] protected UnitState[] unitStates; /**< UnitState[] variable. Массив состояний построки. */
+        protected UnitState currentState /**< UnitState variable. Текущее состояние */;
 
-        [Header("Флаги")]
-        private bool _isSelect = false;
-
+        private Queue<Vector2> _pathPoints;
+        public Transform[] points;
 
         public UnitConfig unitCharacteristics => _unitCharacteristics;
+        public Queue<Vector2> pathPoints => _pathPoints;
 
-        public bool isSelect { get => this._isSelect; }
-
-        /**
-        * Метод инициализации объекта. Вызывается из конкретной постройки в методе Start().
-        */
-        protected void Awake()
+        private new void Awake()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
-            _rigidbody2D.bodyType = RigidbodyType2D.Static;
-
-            if (unitStates.Length != 0)
+            base.Awake();
+            for(int i = 0; i < unitStates.Length; i++)
             {
+                unitStates[i].Init(this);
             }
         }
+        private void Start()
+        {
+            _pathPoints = new Queue<Vector2>();
+            for(int i = 0; i < points.Length; i++) 
+            {
+                _pathPoints.Enqueue(points[i].position);
+            }
 
-        private void Update()
+            ChangeState<UnitWalk>();
+        }
+
+        private void FixedUpdate()
         {
             if (currentState)
-                currentState.UpdateRun();
+                currentState.FixedRun();
         }
 
         public void MoveTo(Vector2 movementVector)
         {
-
+            _pathPoints.Enqueue(movementVector);
         }
 
         /** Реализация контракта IStateChange.
          * Метод смены текущего состояния.
         */
-        public void ChangeState<T>() where T : State
+        public override void ChangeState<T>()
         {
-            State newState = FindState<T>();
+            UnitState newState = FindState<T>();
             if (newState)
             {
                 if (currentState) currentState.StateStop();
@@ -87,42 +73,15 @@ namespace Units
             Debug.Log($"new state {currentState} is set.");
         }
 
-        private State FindState<T>() where T : State
+        private UnitState FindState<T>() where T : State
         {
-            State findResult = null;
+            UnitState findResult = null;
 
             for (int i = 0; i < unitStates.Length; i++)
                 if (unitStates[i] is T)
                     findResult = unitStates[i];
 
             return findResult;
-        }
-
-        /** Реализация контракта IInteractable.
-         * Метод, выполняющийся при выделении постойки игроком.
-        */
-        public void OnSelected()
-        {
-            _isSelect = true;
-            onSelect.Invoke();
-        }
-        /** Реализация контракта IInteractable.
-        * Метод, выполняющийся при отмене выделения постойки игроком.
-        */
-        public void OnDeselected()
-        {
-            _isSelect = false;
-            onDeselect.Invoke();
-        }
-
-        public void AddModule(Module module)
-        {
-            _ = modules.AddLast(module);
-        }
-
-        public void RemoveModule(Module module)
-        {
-            _ = modules.Remove(module);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ConfigClasses
             [SerializeField] private int _healthPoints;
 
             [Header("Мобильные характеристики")]
-            [SerializeField] private int _velocity;
+            [SerializeField] private float _velocity;
 
             [Header("Защитные характеристики")]
             [SerializeField] private DamageResistance _physicalDamageResistance;
@@ -37,7 +37,7 @@ namespace ConfigClasses
             [SerializeField] private int _damageToBase;
 
             public int healthPoints => _healthPoints;
-            public int velocity => _velocity;
+            public float velocity => _velocity;
 
             public DamageResistance physicalDamageResistance => _physicalDamageResistance;
             public DamageResistance energyDamageResistance => _energyDamageResistance;
