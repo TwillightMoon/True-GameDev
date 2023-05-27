@@ -33,7 +33,7 @@ namespace Units
 
             public override void ChangeState<T>()
             {
-                throw new System.NotImplementedException();
+                parentUnit.ChangeState<T>();
             }
         }
     }
