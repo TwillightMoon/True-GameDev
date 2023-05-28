@@ -1,7 +1,7 @@
 using ConfigClasses;
 using ModuleClass;
 using System.Collections.Generic;
-using Unit.EnemyScrips;
+using Units.EnemyScrips;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -59,7 +59,6 @@ namespace Buildings
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             if (enemy)
             {
-                Debug.Log("hit " + collision.gameObject);
 
                 _ = _enemyList.AddLast(enemy);
                 onEnemyCrossesArea.Invoke();

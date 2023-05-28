@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Unit
+namespace Units
 {
     /** Пространство имён, содержащее классы реализации функционала вражеских Юнитов */
     namespace EnemyScrips

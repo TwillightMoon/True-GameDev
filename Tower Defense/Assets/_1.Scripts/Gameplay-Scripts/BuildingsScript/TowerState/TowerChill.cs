@@ -27,6 +27,7 @@ namespace Buildings
 
             public override void ChangeState<T>()
             {
+                Debug.Log("ring");
                 parentTower.ChangeState<T>();
             }
         }

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Artillery-Level3
   m_EditorClassIdentifier: 
   _towerLevel: 2
-  _towerSprite: {fileID: 21300000, guid: e592c2386b3594a4a8bf6b82a9dcec74, type: 3}
+  _sprite: {fileID: 21300000, guid: e592c2386b3594a4a8bf6b82a9dcec74, type: 3}
+  _activeRadius: 0
   _levelCost: 460
   _sellCost: 230
+  m_damageType: 0
   _damage:
-    minDamage: 20
-    maxDamage: 40
-  _fireRatePerSecond: 4
-  _combatRadius: 1
+    min: 0
+    max: 0
+  _attackRatePerSecond: 0
   _splashRadius: 0

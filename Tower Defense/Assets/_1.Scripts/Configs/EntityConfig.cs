@@ -15,7 +15,7 @@ namespace ConfigClasses
         private Levels _towerLevel; /**< enum variable. Уровень, к которому относятся хар-ки */
         [SerializeField]
         [Tooltip("Спрайт")]
-        private Sprite _towerSprite; /**< Sprite variable. Отображаемый спрайт постройки */
+        private Sprite _sprite; /**< Sprite variable. Отображаемый спрайт постройки */
         [Space]
         [Tooltip("Радиус действия")]
         [SerializeField]
@@ -33,6 +33,6 @@ namespace ConfigClasses
         /**
         * Геттер, возвращающий Sprite переменную _towerSprite
         */
-        public Sprite towerSprite => _towerSprite;
+        public Sprite sprite => _sprite;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Laser-Level1
   m_EditorClassIdentifier: 
   _towerLevel: 0
-  _towerSprite: {fileID: 21300000, guid: f79c54bfbfc369a40b200065ec633609, type: 3}
+  _sprite: {fileID: 21300000, guid: f79c54bfbfc369a40b200065ec633609, type: 3}
   _activeRadius: 2
   _levelCost: 180
   _sellCost: 126

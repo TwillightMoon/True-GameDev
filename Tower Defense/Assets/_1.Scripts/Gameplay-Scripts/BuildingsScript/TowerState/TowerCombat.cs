@@ -1,5 +1,5 @@
 using UnityEngine;
-using Unit.EnemyScrips;
+using Units.EnemyScrips;
 
 namespace Buildings
 {
