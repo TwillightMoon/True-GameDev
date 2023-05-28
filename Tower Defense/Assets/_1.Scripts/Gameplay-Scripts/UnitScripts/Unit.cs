@@ -1,4 +1,7 @@
 using ConfigClasses.UnitConfigs;
+
+using DebugScripts.GizmosDebug;
+
 using System.Collections.Generic;
 using Units.UnitStates;
 using UnityEngine;
@@ -20,11 +23,10 @@ namespace Units
         [SerializeField] protected UnitState[] unitStates; /**< UnitState[] variable. Массив состояний построки. */
         protected UnitState currentState /**< UnitState variable. Текущее состояние */;
 
-        private Queue<Vector2> _pathPoints;
-        public Transform[] points;
+        private Queue<Transform> _pathPoints;
 
         public UnitConfig unitCharacteristics => _unitCharacteristics;
-        public Queue<Vector2> pathPoints => _pathPoints;
+        public Queue<Transform> pathPoints => _pathPoints;
 
         private new void Awake()
         {
@@ -33,15 +35,14 @@ namespace Units
             {
                 unitStates[i].Init(this);
             }
+
+            _pathPoints = new Queue<Transform>();
         }
         private void Start()
         {
-            _pathPoints = new Queue<Vector2>();
-            for(int i = 0; i < points.Length; i++) 
-            {
-                _pathPoints.Enqueue(points[i].position);
-            }
+            Debug.Log("gg " + PathGenerator.instance);
 
+            _pathPoints = PathGenerator.instance.GeneratePath();
             ChangeState<UnitWalk>();
         }
 
@@ -51,9 +52,19 @@ namespace Units
                 currentState.FixedRun();
         }
 
-        public void MoveTo(Vector2 movementVector)
+        public void MoveTo(Transform targetTransform)
         {
-            _pathPoints.Enqueue(movementVector);
+            _pathPoints.Enqueue(targetTransform);
+            if (currentState is UnitChill)
+                ChangeState<UnitWalk>();
+        }
+
+        public void MoveTo(Queue<Transform> targetTransforms)
+        {
+            _pathPoints = targetTransforms;
+
+            if (currentState is UnitChill)
+                ChangeState<UnitWalk>();
         }
 
         /** Реализация контракта IStateChange.
@@ -83,5 +94,17 @@ namespace Units
 
             return findResult;
         }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            if (_pathPoints == null || _pathPoints.Count <= 0) return;
+            Transform[] path = pathPoints.ToArray();
+
+            for (int i = 0; i < path.Length - 1; i++)
+                GizmosOnPlaying.DrawLine(path[i].position, path[i + 1].position, Color.red);
+        }
     }
+
+    
 }

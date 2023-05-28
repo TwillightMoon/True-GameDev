@@ -1,3 +1,5 @@
+using DebugScripts.GizmosDebug;
+
 using UnityEngine;
 
 namespace Units
@@ -6,23 +8,27 @@ namespace Units
     {
         public class UnitWalk : UnitState
         {
-            private Vector2 currentTargetPoint;
+            private Transform currentTargetPoint;
 
             public override void StateStart()
             {
-                if (!parentUnit.pathPoints.TryDequeue(out currentTargetPoint))
+                if (!parentUnit.pathPoints.TryPeek(out currentTargetPoint))
                     ChangeState<UnitChill>();
             }
 
             public override void FixedRun()
             {
-                if (Vector2.Distance(transform.position, currentTargetPoint) > 0.001F)
+                if (Vector2.Distance(transform.position, currentTargetPoint.position) > 0.001F)
                 {
                     float step = parentUnit.unitCharacteristics.velocity * Time.deltaTime;
-                    parentUnit.Rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, currentTargetPoint, step));
+                    parentUnit.Rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, currentTargetPoint.position, step));
                 }
-                else if (!parentUnit.pathPoints.TryDequeue(out currentTargetPoint))
-                    ChangeState<UnitChill>();
+                else
+                {
+                    parentUnit.pathPoints.Dequeue();
+                    if (!parentUnit.pathPoints.TryPeek(out currentTargetPoint))
+                        ChangeState<UnitChill>();
+                }
 
             }
 
@@ -34,6 +40,12 @@ namespace Units
             public override void ChangeState<T>()
             {
                 parentUnit.ChangeState<T>();
+            }
+
+            private void OnDrawGizmosSelected()
+            {
+                if (!currentTargetPoint) return;
+                    GizmosOnPlaying.DrawLine(transform.position, currentTargetPoint.position, Color.green);
             }
         }
     }
