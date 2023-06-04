@@ -734,18 +734,38 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u0422\u0435\u043A\u0443\u0449\u0438\u0439 \u0431\u0430\u043B\u0430\u043D\u0441:"
       objectReference: {fileID: 0}
+    - target: {fileID: 1460053956937148463, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9949d7c5916463a46a6bb18c463c2274, type: 2}
+    - target: {fileID: 1460053956937148463, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -710424112799239298, guid: 9949d7c5916463a46a6bb18c463c2274, type: 2}
+    - target: {fileID: 1460053956937148463, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 2841116039000970847, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2841116039000970847, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 420
+      value: 338.6303
       objectReference: {fileID: 0}
     - target: {fileID: 2900887375060642932, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_Name
       value: Level-Components
       objectReference: {fileID: 0}
+    - target: {fileID: 4027046110678336212, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9949d7c5916463a46a6bb18c463c2274, type: 2}
+    - target: {fileID: 4027046110678336212, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -710424112799239298, guid: 9949d7c5916463a46a6bb18c463c2274, type: 2}
     - target: {fileID: 6981400988178513058, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -848,7 +868,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765942947891943585, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.077576
+      value: -54.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8765942947891943585, guid: bc1c1db4e28c5f946990ac8e657c9417, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -5437,7 +5461,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
