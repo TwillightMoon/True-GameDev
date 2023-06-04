@@ -33,6 +33,5 @@ public class SceneChanger : MonoBehaviour
         if (_startGameButton) _startGameButton.SetActive(true);
 
         _settingPanel.SetActive(false);
-
     }
 }

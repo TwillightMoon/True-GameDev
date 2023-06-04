@@ -40,15 +40,12 @@ namespace Units
         }
         private void Start()
         {
-            Debug.Log("gg " + PathGenerator.instance);
-
             _pathPoints = PathGenerator.instance.GeneratePath();
             ChangeState<UnitWalk>();
         }
 
         private void FixedUpdate()
         {
-            Debug.Log("Unit fixed");
             if (currentState)
                 currentState.FixedRun();
         }

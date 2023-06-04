@@ -33,21 +33,16 @@ namespace GlobalUIEvents
             onBalanceChange.Invoke(newBalance);
         } 
 
-        public static void Pause(bool flag)
+        public static void Pause(bool isPause)
         {
-            if(flag == true)
-            {
+            if(isPause == true)
                 SendPauseGame();
-            }
             else
-            {
                 SendResumeGame();
-            }
         }
 
         private static void SendPauseGame()
         {
-            Debug.Log("Pause");
             Time.timeScale = 0;
             onGamePause.Invoke();
         }
