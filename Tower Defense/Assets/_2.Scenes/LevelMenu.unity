@@ -599,7 +599,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1307,6 +1307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f520cd7c4dbe8469877cb8c4a54322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _settingPanel: {fileID: 0}
+  _startGameButton: {fileID: 0}
 --- !u!1 &1540906507
 GameObject:
   m_ObjectHideFlags: 0
