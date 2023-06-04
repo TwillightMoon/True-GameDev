@@ -10,6 +10,8 @@ namespace GlobalUIEvents
         public static UnityEvent<short> onEmptyPositionSelected = new UnityEvent<short>();
         public static UnityEvent<short> onOccupiedPositionSelect = new UnityEvent<short>();
         public static UnityEvent onDeselectPosition = new UnityEvent();
+        public static UnityEvent onGamePause = new UnityEvent();
+        public static UnityEvent onGameResume = new UnityEvent();
 
         //События нажатия кнопки
         public static UnityEvent onButtonClick = new UnityEvent();
@@ -30,5 +32,29 @@ namespace GlobalUIEvents
         {
             onBalanceChange.Invoke(newBalance);
         } 
+
+        public static void Pause(bool flag)
+        {
+            if(flag == true)
+            {
+                SendPauseGame();
+            }
+            else
+            {
+                SendResumeGame();
+            }
+        }
+
+        private static void SendPauseGame()
+        {
+            Debug.Log("Pause");
+            Time.timeScale = 0;
+            onGamePause.Invoke();
+        }
+        private static void SendResumeGame()
+        {
+            Time.timeScale = 1;
+            onGameResume.Invoke();
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace Managers
 
         private void Start()
         {
+            Time.timeScale = 1.0F;
+
             WalletScript.instance.SetCurrentBalace(_startBalance);
         }
     }

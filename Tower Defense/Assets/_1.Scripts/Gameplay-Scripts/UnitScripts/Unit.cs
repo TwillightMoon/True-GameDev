@@ -48,6 +48,7 @@ namespace Units
 
         private void FixedUpdate()
         {
+            Debug.Log("Unit fixed");
             if (currentState)
                 currentState.FixedRun();
         }
