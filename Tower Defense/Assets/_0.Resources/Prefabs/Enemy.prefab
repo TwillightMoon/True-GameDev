@@ -207,21 +207,6 @@ MonoBehaviour:
   unitStates:
   - {fileID: 9071775829883690385}
   - {fileID: 9071775829883690391}
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!61 &9071775831580224343
 BoxCollider2D:
   m_ObjectHideFlags: 0
