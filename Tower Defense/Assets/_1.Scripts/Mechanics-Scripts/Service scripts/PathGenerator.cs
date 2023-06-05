@@ -15,6 +15,8 @@ public class PathGenerator: Singleton<PathGenerator>
 
     public Queue<Transform> GeneratePath()
     {
+        Debug.Log("generate");
+
         if (waypoints.Length <= 0) return null;
 
         Waypoint point = waypoints[0];

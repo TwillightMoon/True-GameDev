@@ -16,6 +16,9 @@ namespace Managers
             Time.timeScale = 1.0F;
 
             WalletScript.instance.SetCurrentBalace(_startBalance);
+
+            Debug.Log("Test");
+            WaveManager.instance.SpawnStart();
         }
     }
 }

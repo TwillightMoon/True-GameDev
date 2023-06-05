@@ -36,12 +36,7 @@ namespace Units
                 unitStates[i].Init(this);
             }
 
-            _pathPoints = new Queue<Transform>();
-        }
-        private void Start()
-        {
-            _pathPoints = PathGenerator.instance.GeneratePath();
-            ChangeState<UnitWalk>();
+            ChangeState<UnitChill>();
         }
 
         private void FixedUpdate()
@@ -59,7 +54,7 @@ namespace Units
 
         public void MoveTo(Queue<Transform> targetTransforms)
         {
-            _pathPoints = targetTransforms;
+            _pathPoints = new Queue<Transform>(targetTransforms);
 
             if (currentState is UnitChill)
                 ChangeState<UnitWalk>();
