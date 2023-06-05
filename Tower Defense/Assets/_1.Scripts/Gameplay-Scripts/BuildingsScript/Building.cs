@@ -64,6 +64,19 @@ namespace Buildings
             }
         }
 
+        public void UpdateCharacteristics()
+        {
+            if (_spriteRenderer)
+                _spriteRenderer.sprite = _buildingCharacteristic.sprite;
+            else
+                Debug.LogError("SpriteRenderer не установлен!");
+
+            foreach (Module item in modules)
+            {
+                item.UpdateData(buildingsConfig);
+            }
+        }
+
         /** Реализация контракта IStateChange.
          * Метод смены текущего состояния.
         */
@@ -92,5 +105,7 @@ namespace Buildings
 
             return findResult;
         }
+
+        
     }
 }

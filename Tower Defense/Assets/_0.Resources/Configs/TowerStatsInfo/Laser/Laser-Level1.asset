@@ -17,8 +17,8 @@ MonoBehaviour:
   _activeRadius: 2
   _levelCost: 180
   _sellCost: 126
-  m_damageType: 0
+  m_damageType: 1
   _damage:
-    min: 0
-    max: 0
-  _attackRatePerSecond: 0
+    min: 2
+    max: 3
+  _attackRatePerSecond: 1

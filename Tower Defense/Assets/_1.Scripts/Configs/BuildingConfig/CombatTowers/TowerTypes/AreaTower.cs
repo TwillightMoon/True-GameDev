@@ -11,7 +11,7 @@ namespace ConfigClasses
             [SerializeField] private float _splashRadius;
 
             public float splashRadius => _splashRadius;
-            public override DamageType GetDamageType() => DamageType.Area;
+            public override DamageType GetDamageType() => DamageType.Explosive;
         }
     }
 }

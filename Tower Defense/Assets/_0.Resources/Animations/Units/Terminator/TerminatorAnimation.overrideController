@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TerminatorAnimation
+  m_Controller: {fileID: 9100000, guid: a4b88721fba24b748a9670603f85aa3a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ab46ef4e7244efd4e8bbf81345f409ec, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aefdd01aa7b78894583141cf89a1d0d6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7425c37e1ebdbaf4b90a817c8de0eeae, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b3287e6704dc35a469aad01a910aed99, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5a47ffd6272a75442b06320bbc067af4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 31d2498d3d6b4784a8883916afe0cbe8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 027ded333f9c7784cb321f5dfa4012da, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f10f871a06caeea499021461e161600f, type: 2}

@@ -32,9 +32,12 @@ public class TacticalPoint : MonoBehaviour, IInteractable
 
     public void SetBuilding(Building newBuilding)
     {
+        _building = newBuilding;
         Vector2 buildingPosition = (Vector2)transform.position + _boxCollider2D.offset;
-        _building = Instantiate(newBuilding, buildingPosition, Quaternion.identity, this.transform);
 
+        _building.transform.position = buildingPosition;
+        
+        _building.UpdateCharacteristics();
         OnDeselected();
     }
     public void DescructBuilding()
