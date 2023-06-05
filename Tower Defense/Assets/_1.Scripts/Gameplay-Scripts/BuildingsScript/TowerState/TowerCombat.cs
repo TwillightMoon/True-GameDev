@@ -55,7 +55,7 @@ namespace Buildings
                 {
                     if (Kd == null)
                     {
-                        Vector2 direction = (_currentEnemy.transform.position - transform.position).normalized;
+                        Vector2 direction = CalcDirection(_currentEnemy.transform.position);
                         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
                         Bullet bullet = CreateBullet();
@@ -101,6 +101,14 @@ namespace Buildings
                 float damage = Random.Range(towerConfig.damage.min, towerConfig.damage.max);
 
                 return damage;
+            }
+            private Vector2 CalcDirection(Vector2 target)
+            {
+                if (_gun)
+                {
+                    return (target - (Vector2)_gun.position).normalized;
+                }
+                return (target - (Vector2)transform.position).normalized;
             }
 
             private IEnumerator KD()
