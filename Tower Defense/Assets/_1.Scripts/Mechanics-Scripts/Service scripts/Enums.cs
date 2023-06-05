@@ -40,6 +40,17 @@ namespace StatsEnums
         }
     }
 
+    namespace Orientation
+    {
+        public enum OrientationEnum
+        {
+            Left,
+            Right,
+            Up,
+            Down
+        }
+    }
+
     namespace DamageTypes
     {
         public enum DamageType : byte

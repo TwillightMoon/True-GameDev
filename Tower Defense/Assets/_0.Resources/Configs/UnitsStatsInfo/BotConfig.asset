@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f224c9b6f5e115b449f99008e2b12aa2, type: 3}
-  m_Name: TypicalUnit
+  m_Name: BotConfig
   m_EditorClassIdentifier: 
   _towerLevel: 0
   _sprite: {fileID: 0}
