@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Units.UnitStates;
 using UnityEngine;
 
+using StatsEnums.DamageRistances;
+
 /**Пространство имён, содержащее классы реализации игровых Юнитов */
 namespace Units
 {
@@ -13,7 +15,7 @@ namespace Units
     /** Абстрактный класс, определяющий базовые методы для всех юнитов */
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public abstract class Unit : Entity
+    public abstract class Unit : Entity, IDamageable
     {
 
         [Header("Характеристика юнита")]
@@ -28,6 +30,8 @@ namespace Units
         public UnitConfig unitCharacteristics => _unitCharacteristics;
         public Queue<Transform> pathPoints => _pathPoints;
 
+        protected float _currentHealthPoint;
+
         private new void Awake()
         {
             base.Awake();
@@ -37,6 +41,8 @@ namespace Units
             }
 
             ChangeState<UnitChill>();
+
+            _currentHealthPoint = unitCharacteristics.healthPoints;
         }
 
         private void FixedUpdate()
@@ -97,6 +103,26 @@ namespace Units
             for (int i = 0; i < path.Length - 1; i++)
                 GizmosOnPlaying.DrawLine(path[i].position, path[i + 1].position, Color.red);
         }
+
+        public void GetPhysicalDamage(float damage)
+        {
+            _currentHealthPoint -= damage - damage * DamageResistances.GetDamageResistance(unitCharacteristics.physicalDamageResistance);
+            CheckHealth();
+        }
+
+        public void GetExplosiveDamage(float damage)
+        {
+            _currentHealthPoint -= damage - damage * DamageResistances.GetDamageResistance(unitCharacteristics.areaDamageResistance);
+            CheckHealth();
+        }
+
+        public void GetEnergyDamage(float damage)
+        {
+            _currentHealthPoint -= damage - damage * DamageResistances.GetDamageResistance(unitCharacteristics.energyDamageResistance);
+            CheckHealth();
+        }
+
+        protected abstract void CheckHealth();
     }
 
     

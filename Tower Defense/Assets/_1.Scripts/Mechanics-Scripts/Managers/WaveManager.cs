@@ -21,16 +21,11 @@ public class WaveManager : Singleton<WaveManager>
     [Tooltip("Время между созданием отдельных юнитов")]
     [SerializeField] private float _timeBetweenUnitSpawn;
 
-    private int _unitsOnScreen = 0;
 
     public int waveCount => _waves.Length;
 
     private Coroutine groupSpawner;
 
-    private void Awake()
-    {
-        GlobalEvents.onEnemyDeath.AddListener(UnitOnScreenDecrease);
-    }
 
     public void SpawnStart()
     {
@@ -68,7 +63,6 @@ public class WaveManager : Singleton<WaveManager>
         for (int i = 0; i < unitGroup.unitCount; i++)
         {
             Instantiate(unitGroup.Get(i), _spawnPoint.position, Quaternion.identity, groupParent).MoveTo(path);
-            UnitOnScreenIncrease();
             yield return new WaitForSeconds(_timeBetweenUnitSpawn);
         }
 
@@ -86,13 +80,5 @@ public class WaveManager : Singleton<WaveManager>
         Transform parentForGroup = new GameObject("UnitGroup").transform;
         parentForGroup.parent = _parentForUnits.transform;
         return parentForGroup;
-    }
-    private void UnitOnScreenIncrease()
-    {
-        _unitsOnScreen++;
-    }
-    private void UnitOnScreenDecrease()
-    {
-        _unitsOnScreen--;
     }
 }

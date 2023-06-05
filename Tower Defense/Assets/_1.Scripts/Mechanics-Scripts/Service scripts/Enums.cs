@@ -46,26 +46,26 @@ namespace StatsEnums
         {
             Physical,
             Energy,
-            Area,
+            Explosive,
             AMY
         }
 
         public static class DamageTypes
         {
-            public static void GetAttackType(DamageType damageType)
+            public static IAttacker GetAttackType(DamageType damageType)
             {
                 switch (damageType)
                 {
                     case DamageType.Physical:
-                        return;
+                        return new PhysicalAttack();
                     case DamageType.Energy:
-                        return;
-                    case DamageType.Area:
-                        return;
+                        return new EnergyAttack();
+                    case DamageType.Explosive:
+                        return null;
                     case DamageType.AMY:
-                        return;
+                        return null;
                     default:
-                        return;
+                        return null;
                 }
             }
         }

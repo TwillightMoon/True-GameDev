@@ -15,8 +15,8 @@ MonoBehaviour:
   _towerLevel: 0
   _sprite: {fileID: 0}
   _activeRadius: 0
-  _healthPoints: 0
-  _velocity: 0.5
+  _healthPoints: 5
+  _velocity: 0.75
   _physicalDamageResistance: 0
   _energyDamageResistance: 0
   _areaDamageResistance: 0
@@ -26,5 +26,5 @@ MonoBehaviour:
     min: 0
     max: 0
   _attackRatePerSecond: 0
-  _rewardForMurder: 0
-  _damageToBase: 0
+  _rewardForMurder: 15
+  _damageToBase: 2
